@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import "./Voting-system.css";
 
 const candidates = [
   { id: 1, name: "Alice T. Smith", party: "Party A" },
@@ -17,6 +18,7 @@ const candidates = [
 const Voting = () => {
   const [selected, setSelected] = useState("");
   const [error, setError] = useState("");
+  const [showConfirm, setShowConfirm] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -26,8 +28,19 @@ const Voting = () => {
       return;
     }
     setError("");
+    setShowConfirm(true);
+  };
+
+  const handleConfirm = () => {
+    setShowConfirm(false);
     navigate("/confirmation");
   };
+
+  const handleCancel = () => {
+    setShowConfirm(false);
+  };
+
+  const selectedCandidate = candidates.find((c) => c.id === selected);
 
   return (
     <div className="page-wrapper">
@@ -42,7 +55,9 @@ const Voting = () => {
           <form className="voting-form" onSubmit={handleSubmit}>
             {candidates.map((c, idx) => (
               <div
-                className={`ballot-row${idx !== candidates.length - 1 ? " ballot-row-border" : ""}`}
+                className={`ballot-row${
+                  idx !== candidates.length - 1 ? " ballot-row-border" : ""
+                }`}
                 key={c.id}
               >
                 <input
@@ -66,6 +81,31 @@ const Voting = () => {
             </button>
           </form>
         </div>
+        {showConfirm && (
+          <div className="modal-backdrop">
+            <div className="modal">
+              <p>
+                Are you sure you want to cast your vote for{" "}
+                <strong>{selectedCandidate?.name}</strong>?
+              </p>
+              <div className="modal-actions">
+                <button className="button" onClick={handleConfirm}>
+                  Yes, cast vote
+                </button>
+                <button
+                  className="button"
+                  style={{
+                    background: "#eee",
+                    color: "#222",
+                  }}
+                  onClick={handleCancel}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </main>
       <Footer />
     </div>

@@ -1,5 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
+import "./Voting-system.css";
+import "./BallotConfirmation.css"
 
 const randomWords = ["sheep", "tree", "moon", "star", "river", "cloud"];
 const randomEmojis = ["🌟", "🍀", "🔥", "🎈", "🌸", "⚡"];
@@ -14,101 +18,65 @@ const BallotConfirmation = ({ type = "card", ballotNumber = 12345 }) => {
   const emojiRef = randomEmojis[Math.floor(Math.random() * randomEmojis.length)];
   const colorRef = randomColors[Math.floor(Math.random() * randomColors.length)];
 
-  const containerStyle = {
-    textAlign: "center",
-    margin: "2rem auto",
-    padding: "2rem",
-    maxWidth: "600px",
-    borderRadius: "8px",
-    boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
-    backgroundColor: "#20B2AA", // teal/green background
-    color: "#fff",
-    fontFamily: "Arial, sans-serif"
-  };
-
-  const buttonStyle = {
-    marginTop: "40px",
-    padding: "12px 24px",
-    fontSize: "16px",
-    cursor: "pointer",
-    borderRadius: "6px",
-    border: "none",
-    backgroundColor: "#008080",
-    color: "#fff",
-    fontWeight: "bold"
-  };
-
-  const visualStyle = {
-    marginTop: "20px",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center"
-  };
-
   return (
-    <div style={containerStyle}>
-      <h2>Ballot Confirmation</h2>
-      <p>Your ballot number: <strong>{ballotNumber}</strong></p>
+    <div className="page-wrapper">
+      <Navbar />
+      <main className="welcome-main">
+        <div className="card" style={{ maxWidth: 600, width: "100%" }}>
+          <h2>Ballot Confirmation</h2>
+          <p>Your ballot number: <strong>{ballotNumber}</strong></p>
 
-      <div style={visualStyle}>
-        {type === "words" && (
-          <div style={{ fontSize: "24px", fontWeight: "bold" }}>{wordRef}
-            <div style={{ fontSize: "16px", marginTop: "5px" }}>{dateTime}</div>
+          <div className="confirmation-visual">
+            {type === "words" && (
+              <div className="confirmation-words">
+                <span className="confirmation-main">{wordRef}</span>
+                <div className="confirmation-date">{dateTime}</div>
+              </div>
+            )}
+
+            {type === "images" && (
+              <div className="confirmation-images">
+                <img
+                  src={`https://via.placeholder.com/80?text=${wordRef}`}
+                  alt="ballot icon"
+                  className="confirmation-img"
+                />
+                <div className="confirmation-date">{dateTime}</div>
+              </div>
+            )}
+
+            {type === "patterns" && (
+              <div
+                className="confirmation-pattern"
+                style={{
+                  background: `repeating-linear-gradient(45deg, #${Math.floor(Math.random() * 16777215).toString(
+                    16
+                  )}, #${Math.floor(Math.random() * 16777215).toString(16)} 10px)`
+                }}
+              >
+                <span className="confirmation-date">{dateTime}</span>
+              </div>
+            )}
+
+            {type === "card" && (
+              <div
+                className="confirmation-card"
+                style={{
+                  backgroundColor: colorRef
+                }}
+              >
+                <span className="confirmation-main" style={{ fontSize: 32 }}>{emojiRef}</span>
+                <div className="confirmation-date">{dateTime}</div>
+              </div>
+            )}
           </div>
-        )}
 
-        {type === "images" && (
-          <>
-            <img
-              src={`https://via.placeholder.com/80?text=${wordRef}`}
-              alt="ballot icon"
-              style={{ marginBottom: "10px", borderRadius: "8px" }}
-            />
-            <div>{dateTime}</div>
-          </>
-        )}
-
-        {type === "patterns" && (
-          <div
-            style={{
-              width: "120px",
-              height: "120px",
-              background: `repeating-linear-gradient(45deg, #${Math.floor(Math.random() * 16777215).toString(
-                16
-              )}, #${Math.floor(Math.random() * 16777215).toString(16)} 10px)`,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: "14px",
-              color: "#fff"
-            }}
-          >
-            {dateTime}
-          </div>
-        )}
-
-        {type === "card" && (
-          <div
-            style={{
-              marginTop: "20px",
-              padding: "20px",
-              backgroundColor: colorRef,
-              borderRadius: "12px",
-              fontSize: "24px",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center"
-            }}
-          >
-            {emojiRef}
-            <div style={{ fontSize: "14px", marginTop: "10px" }}>{dateTime}</div>
-          </div>
-        )}
-
-        <button style={buttonStyle} onClick={() => navigate("/studyinfo2")}>
-          Logout
-        </button>
-      </div>
+          <button className="button" style={{ marginTop: 40 }} onClick={() => navigate("/studyinfo2")}>
+            Logout
+          </button>
+        </div>
+      </main>
+      <Footer />
     </div>
   );
 };
