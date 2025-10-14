@@ -14,8 +14,8 @@ function BallotConfirmation_Picture() {
   const location = useLocation();
   const { userSelectedYes } = useContext(VoteContext);
   // Define the steps for each flow:
-  const stepsNo = ["Voted Before", "Voting", "Ballot Confirmation"];
-  const stepsYes = ["Voted Before", "Visual Selection", "Voting", "Ballot Confirmation"];
+  const stepsNo = ["Voted Before", "Voting", "Confirmation"];
+  const stepsYes = ["Voted Before", "Visual Selection", "Voting", "Confirmation"];
 
   // Determine which steps array and current step to use.
   // For "No": currentStep is 3.

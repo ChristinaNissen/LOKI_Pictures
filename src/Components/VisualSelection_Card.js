@@ -167,8 +167,8 @@ function getInitialCards() {
   const navigate = useNavigate();
   const { userSelectedYes } = useContext(VoteContext);
 
-  const stepsNo = ["Voted Before", "Voting", "Ballot Confirmation"];
-  const stepsYes = ["Voted Before", "Identification of Previous Ballots", "Voting", "Ballot Confirmation"];
+  const stepsNo = ["Voted Before", "Voting", "Confirmation"];
+  const stepsYes = ["Voted Before", "Identification of Previous Ballots", "Voting", "Confirmation"];
   const steps = userSelectedYes ? stepsYes : stepsNo;
   const currentStep = userSelectedYes ? 2 : 0;  // adjust as needed
 

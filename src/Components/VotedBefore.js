@@ -34,8 +34,8 @@ const VotedBefore = () => {
     }
   };
 
-  const stepsNo = ["Voted Before", "Voting", "Ballot Confirmation"];
-  const stepsYes = ["Voted Before", "Visual Selection", "Voting", "Ballot Confirmation"];
+  const stepsNo = ["Voted Before", "Voting", "Confirmation"];
+  const stepsYes = ["Voted Before", "Identification of Previous Ballots", "Voting", "Confirmation"];
 
   return (
     <div className="page-wrapper">

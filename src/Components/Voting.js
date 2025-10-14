@@ -46,12 +46,12 @@ const Voting = () => {
 
   const selectedCandidate = candidates.find((c) => c.id === selected);
 
-  const stepsNo = ["Voted Before", "Voting", "Ballot Confirmation"];
+  const stepsNo = ["Voted Before", "Voting", "Confirmation"];
   const stepsYes = [
     "Voted Before",
-    "Visual Selection",
+    "Identification of Previous Ballots",
     "Voting",
-    "Ballot Confirmation",
+    "Confirmation",
   ];
   const steps = userSelectedYes ? stepsYes : stepsNo;
   const currentStep = userSelectedYes ? 3 : 2;

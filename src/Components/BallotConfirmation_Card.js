@@ -155,8 +155,8 @@ const BallotConfirmation = ({ type = "card", ballotNumber = 12345}) => {
   const dateTime = now.toLocaleString();
 
    // Define the steps for each flow:
-  const stepsNo = ["Voted Before", "Voting", "Ballot Confirmation"];
-  const stepsYes = ["Voted Before", "Visual Selection", "Voting", "Ballot Confirmation"];
+  const stepsNo = ["Voted Before", "Voting", "Confirmation"];
+  const stepsYes = ["Voted Before", "Visual Selection", "Voting", "Confirmation"];
 
   // Determine which steps array and current step to use.
   // For "No": currentStep is 3.
@@ -177,7 +177,7 @@ const BallotConfirmation = ({ type = "card", ballotNumber = 12345}) => {
 
       <main className="welcome-main">
         <ProcessBar steps={steps} currentStep={currentStep} />
-       <h1>Confirmation</h1>
+       <h1 style={{ marginTop: "70px" }}>Confirmation</h1>
        <div className="confirmation-desc">
           You have cast your ballot succesfully!
 				</div>
@@ -263,11 +263,11 @@ const BallotConfirmation = ({ type = "card", ballotNumber = 12345}) => {
               </div>
             )}
           </div>
-
-          <button className="button" style={{ marginTop: 40 }} onClick={() => navigate("/studyinfo2")}>
+        
+        </div>
+         <button className="button" style={{ marginTop: 40 }} onClick={() => navigate("/studyinfo2")}>
             Logout
           </button>
-        </div>
       </main>
       <Footer />
     </div>
