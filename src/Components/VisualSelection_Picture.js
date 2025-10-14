@@ -122,6 +122,7 @@ const VisualSelection = () => {
   const [items, setItems] = useState(allImages.slice(0, 50));
   const [selected, setSelected] = useState([]);
   const [page, setPage] = useState(0);
+  const [showError, setShowError] = useState(false);
 
   
     // Define the steps for each flow:
@@ -163,9 +164,11 @@ const VisualSelection = () => {
     if (selected.length > 0) {
       navigate("/voting",{ state: { userSelectedYes: true } });
     } else {
-      alert("Please select one item to continue");
+      setShowError(true);
     }
   };
+
+  const closeError = () => setShowError(false);
 
   return (
     <div className="page-wrapper">
@@ -220,6 +223,17 @@ const VisualSelection = () => {
             Confirm Selection
           </button>
         </div>
+
+        {showError && (
+          <div className="error-overlay">
+            <div className="error-message">
+              <p>Please select at least one item before continuing.</p>
+              <button onClick={closeError} className="button">
+                Close
+              </button>
+            </div>
+          </div>
+        )}
       </main>
       <Footer />
     </div>

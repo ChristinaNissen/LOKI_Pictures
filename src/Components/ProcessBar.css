@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 20px 0;
+  margin: 20px auto;
 }
 
 .process-step {
@@ -13,36 +13,41 @@
 }
 
 .step-icon {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background-color: #ccc;
+  background-color: #e0e0e0; /* grey */
   color: #fff;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   font-weight: bold;
-}
-
-.step-icon.active {
-  background-color: var(--primary-yellow, #ffd600);
-}
-
-.step-icon.completed {
-  background-color: #4caf50; /* Green indicates a completed step */
-}
-
-.step-divider {
-  width: 40px;
-  height: 2px;
-  background-color: #ccc;
-  margin: 0 8px;
-  align-self: center;
+  transition: background-color 0.3s ease;
 }
 
 .step-label {
-  margin-top: 4px;
-  font-size: 0.8rem;
+  margin-top: 8px;
+  font-size: 0.9rem;
   text-align: center;
-  max-width: 80px;
+  color: #666;
+}
+
+/* Divider line between steps */
+.step-divider {
+  width: 40px; /* adjust as needed */
+  height: 4px;
+  background-color: #e0e0e0; /* grey when unfulfilled */
+  transition: background-color 0.3s ease;
+  margin: 0 8px;
+}
+
+/* Change the appearance for fulfilled/active steps */
+.process-step.completed .step-icon,
+.process-step.active .step-icon {
+  background-color: #ffd600; /* primary-yellow */
+}
+
+.process-step.completed ~ .step-divider,
+.process-step.active ~ .step-divider {
+  background-color: #ffd600;
 }

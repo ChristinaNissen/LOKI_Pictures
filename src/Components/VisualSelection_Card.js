@@ -175,6 +175,7 @@ function getInitialCards() {
   const [cards, setCards] = useState(() => getInitialCards());
   const [selected, setSelected] = useState([]);
   const [page, setPage] = useState(0);
+  const [showError, setShowError] = useState(false);
 
   // Dynamically add 10 new cards each minute
   useEffect(() => {
@@ -200,9 +201,11 @@ function getInitialCards() {
     if (selected.length > 0) {
       navigate("/voting",{ state: { userSelectedYes: true } });
     } else {
-      alert("Please select one item to continue");
+      setShowError(true);
     }
   };
+
+  const closeError = () => setShowError(false);
 
   return (
     <div className="page-wrapper">
@@ -249,7 +252,7 @@ function getInitialCards() {
                           case 7: fontSize = "45px"; break;
                           case 8: fontSize = "45px"; break;
                           case 9: fontSize = "45px"; break;
-                          case 10: fontSize = "38px"; break;
+                          case 10: fontSize = "32px"; break;
                           default: fontSize = "36px";
                         }
                         return (
@@ -298,6 +301,17 @@ function getInitialCards() {
             Confirm Selection
           </button>
         </div>
+
+        {showError && (
+          <div className="error-overlay">
+            <div className="error-message">
+              <p>Please select at least one item before continuing.</p>
+              <button onClick={closeError} className="button">
+                Close
+              </button>
+            </div>
+          </div>
+        )}
       </main>
       <Footer />
     </div>
