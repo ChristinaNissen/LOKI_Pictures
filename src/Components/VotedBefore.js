@@ -1,69 +1,94 @@
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
-import "./Voting-system.css";
-import Footer from "./Footer";
-import "./Welcome.css";
-import ProcessBar from "./ProcessBar.js"; // Import your progress bar
-import Voting from "./Voting"; // Import the Voting component
 import VoteContext from "../Contexts/VoteContext";
-import { useContext } from "react";
+import ProcessBar from "./ProcessBar";
+import Footer from "./Footer";
+import "./Voting-system.css";
+import "./VotedBefore.css";
 
 const VotedBefore = () => {
   const navigate = useNavigate();
   const { setUserSelectedYes } = useContext(VoteContext);
+  const [selected, setSelected] = useState(null); // null means none selected yet
+  const [showError, setShowError] = useState(false);
 
-  const handleYes = () => {
-    setUserSelectedYes(true);
-    console.log("VotedBefore: userSelectedYes set to", true);
-    // pass the value using location state
-    navigate("/selection");
+  const handleSelect = (value) => {
+    if (selected === value) {
+      setSelected(null); // unselect if clicked again
+    } else {
+      setSelected(value);
+    }
   };
 
-  const handleNo = () => {
-    setUserSelectedYes(false);
-    console.log("VotedBefore: userSelectedYes set to", false);
-    navigate("/voting");
+  const handleNext = () => {
+     if (selected === null) {
+      setShowError(true);
+      return;
+    }
+    if (selected === true) {
+      setUserSelectedYes(true);
+      navigate("/selection");
+    } else if (selected === false) {
+      setUserSelectedYes(false);
+      navigate("/voting");
+    }
   };
 
   const stepsNo = ["Voted Before", "Voting", "Ballot Confirmation"];
   const stepsYes = ["Voted Before", "Visual Selection", "Voting", "Ballot Confirmation"];
-  
-  console.log("VotedBefore: userSelectedYes =", setUserSelectedYes);
 
   return (
     <div className="page-wrapper">
-      <main className="welcome-main">
-        <h1>Welcome!</h1>
-        <p className="text-main">
-          You have successfully logged in. Please proceed with your voting process below.
+      <main className="welcome-main" style={{ marginTop: "70px" }}>
+        <ProcessBar steps={selected ? stepsYes : stepsNo} currentStep={1} />
+        <h1 style={{ marginTop: "70px" }}>Have you voted in this election before?</h1>
+        <p className="text-main" style={{ marginBottom: "1px" }}>
+          Please select below whether you have voted in this election before or not.
         </p>
-        <ProcessBar
-        steps={setUserSelectedYes ? stepsYes : stepsNo}
-        currentStep={1}
-      />
-        <div className="card">
-          <p className="votedbefore-question">
-            Have you voted in this specific election before?
-          </p>
-          <div className="card-actions">
-            <button
-              onClick={handleYes}
-              className="button"
-              type="button"
+        <div className="card-wide">
+          <div className="box-container">
+            <div
+              className={`yellow-box ${selected === false ? "selected" : ""}`}
+              onClick={() => handleSelect(false)}
             >
-              Yes
-            </button>
-            <button
-              onClick={handleNo}
-              className="button"
-              type="button"
+              <p>
+                <strong>No</strong>
+                <br />
+                This is my first time voting in this election
+              </p>
+            </div>
+
+             <div
+              className={`yellow-box ${selected === true ? "selected" : ""}`}
+              onClick={() => handleSelect(true)}
             >
-              No
-            </button>
+              <p>
+                <strong>Yes</strong>
+                <br />
+                I have voted before in this election
+              </p>
+            </div>
           </div>
         </div>
+          <div style={{ display: "flex", justifyContent: "center", marginTop: 32 }}>
+        <button className="button" onClick={handleNext}>
+            Next
+          </button>
+           </div>
+
+
+
+        {showError && (
+          <div className="error-overlay">
+            <div className="error-message">
+              <p>Please select an option before clicking Next.</p>
+              <button className="button" onClick={() => setShowError(false)}>
+                Close
+              </button>
+            </div>
+          </div>
+        )}
       </main>
-      
       <Footer />
     </div>
   );

@@ -168,7 +168,7 @@ function getInitialCards() {
   const { userSelectedYes } = useContext(VoteContext);
 
   const stepsNo = ["Voted Before", "Voting", "Ballot Confirmation"];
-  const stepsYes = ["Voted Before", "Visual Selection", "Voting", "Ballot Confirmation"];
+  const stepsYes = ["Voted Before", "Identification of Previous Ballots", "Voting", "Ballot Confirmation"];
   const steps = userSelectedYes ? stepsYes : stepsNo;
   const currentStep = userSelectedYes ? 2 : 0;  // adjust as needed
 
@@ -215,6 +215,16 @@ function getInitialCards() {
         <div className="welcome-desc">
           Please select all items below that you have seen when casting your previous ballots.
         </div>
+        {/*
+<div className="header-box">
+  <p>
+    <strong>Anti-Coercion Feature:</strong> This part of the voting process ensures that all voters can vote freely without any external pressure or influence.
+  </p>
+  <p>
+    This security measure ensures that you are the only one who can update your vote.
+  </p>
+</div>
+*/}
         <div className="card" style={{ maxWidth: 1000, width: "100%" }}>
           <div className="visual-selection-grid">
             {pagedCards.map((card, idx) => {

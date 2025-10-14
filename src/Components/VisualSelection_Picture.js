@@ -127,7 +127,7 @@ const VisualSelection = () => {
   
     // Define the steps for each flow:
   const stepsNo = ["Voted Before", "Voting", "Ballot Confirmation"];
-  const stepsYes = ["Voted Before", "Visual Selection", "Voting", "Ballot Confirmation"];
+  const stepsYes = ["Voted Before", "Identification of Previous Ballots", "Voting", "Ballot Confirmation"];
 
   // Determine which steps array and current step to use.
   // For "No": currentStep is 3.
