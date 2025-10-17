@@ -1,0 +1,118 @@
+/* Accordion container */
+.accordion {
+  margin-top: px;
+}
+
+/* Main section headlines */
+.accordion__header {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 16px 0;
+  margin-bottom: 0;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #222;
+  outline: none;
+  transition: background 0.2s;
+  padding-left: 5px; /* or use your preferred value */
+}
+
+/* Accordion item container with card-like effect */
+.accordion__item {
+  /* Remove box styles */
+  border: none;
+  background: transparent;
+  padding: 8px 0;
+}
+
+/* Add a grey separator between items */
+.accordion__item:not(:last-child)::after {
+  content: "";
+  display: block;
+  height: 1px;
+  background-color: #ccc;
+  margin: 8px 0;
+}
+
+/* The clickable header of each item */
+.accordion__subheader {
+  background-color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s ease;
+  color: #444;
+}
+
+.accordion__subheader:hover {
+  background-color: #fffbe6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* Toggle arrow styling */
+.accordion__toggle {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+/* The content panel styled to appear like a card body */
+.accordion__subcontent {
+  padding: 5px;
+  border-top: 1px solid #eee;
+  background-color: #fff;
+  color: #444;
+  text-align: left;
+  margin-left: 0;
+}
+
+/* Additional classes (if needed) */
+.accordion-item {
+  border-bottom: 1px solid #eee;
+}
+
+.accordion-arrow {
+  font-size: 1rem;
+  margin-left: 8px;
+}
+
+.accordion-content {
+  padding: 0 0 16px 0;
+  color: #444;
+  font-size: 1rem;
+}
+
+.card {
+  max-width: 600px; /* or your preferred width */
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 25px;
+  box-sizing: border-box; /* Ensure padding/margins don't cause expansion */
+}
+
+/* Also, make sure the accordion items take full width */
+.accordion,
+.accordion__section,
+.accordion__content,
+.accordion__item,
+.accordion__subheader,
+.accordion__subcontent {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.accordion__section:first-of-type .accordion__header {
+  margin-top: 0px; /* Adjust value as needed */
+}

@@ -17,6 +17,7 @@ import Navbar from './Components/Navbar';
 import './App.css';
 import VoteContext from "./Contexts/VoteContext";
 import PrivateModeWarning from './Components/PrivateModeWarning';
+import Help from './Components/Help';
 
 
 function App() {
@@ -45,9 +46,9 @@ function App() {
           <Route path="/studyinfo2" element={<StudyInfo2 />} />
           <Route path="/selection" element={<VisualSelection />} />
           <Route path="/selection2" element={<VisualSelectionPicture />} />
-
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/private-mode" element={<PrivateModeWarning />} />
+          <Route path="/help" element={<Help />} />
         </Routes>
       </VoteContext.Provider>
     </>
