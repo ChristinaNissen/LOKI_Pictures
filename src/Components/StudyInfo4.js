@@ -4,7 +4,7 @@ import "./study-info.css";
 import Instructions from "../Assets/Instructions_e-voting.pdf";
 import { downloadFile } from "../util";
 
-const StudyInfo1 = () => {
+const StudyInfo4 = () => {
   const [checked, setChecked] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -42,8 +42,8 @@ const StudyInfo1 = () => {
             <div className="step-number">1</div>
             <div className="step-content">
               <p>
-                All candidates are fictional and for the purpose of this study we ask you to vote for{" "}
-                <strong>Martin Taylor.</strong>
+                All candidates are fictional and for the purpose of this study we ask you to update your vote to{" "}
+                <strong>Sofia Lee.</strong>
               </p>
               <label className="check-box blue-bg-highlight">
                 <input
@@ -52,7 +52,7 @@ const StudyInfo1 = () => {
                   onChange={handleChangeCheckbox}
                   className="blue-bg-highlight"
                 />
-                I understand and will vote for the candidate Martin Taylor.
+                I understand and will vote for the candidate Sofia Lee.
               </label>
             </div>
           </div>
@@ -101,4 +101,4 @@ const StudyInfo1 = () => {
   );
 };
 
-export default StudyInfo1;
+export default StudyInfo4;
