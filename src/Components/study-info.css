@@ -22,16 +22,18 @@
 }
 
 .study-button {
-  background: #1976d2; /* Distinct blue */
-  color: #fff;
-  font-weight: bold;
+  padding: 0.7em 2.5em;
+  font-size: 1.15rem;
   border: none;
-  border-radius: 8px;
-  padding: 14px 36px;
-  font-size: 1.1rem;
-  margin-top: 2px;
+  border-radius: 6px;
+  background-color: #1976d2;
+  color: #fff;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.2s;
+  align-self: flex-start; /* aligns button to left */
+  margin-top: 0.7em;
+  width: auto; /* only as wide as content */
+  min-width: 8rem; /* optional: minimum width for consistency */
 }
 
 .study-button:hover {
@@ -93,3 +95,56 @@
   margin-right: 0.6em;
   vertical-align: middle;
 }
+
+.blue-bg-highlight {
+  color: #1976d2;
+  display: inline-block;
+}
+
+.step-divider {
+  border: none;
+  border-top: 1px solid #000; /* black and thin */
+  margin: 2.5rem 0;
+  height: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.step-divider:last-of-type {
+  margin-bottom: 0rem;
+}
+
+.step-divider:first-of-type {
+  margin-top: 0rem;
+  margin-bottom: 2rem;
+}
+
+.step-row {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.step-number {
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1;
+  margin-top: 0.2em;
+}
+
+.step-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.7rem; /* less space between items */
+}
+
+.step-content p,
+.step-content strong,
+.step-content .blue-bg-highlight {
+  margin: 0.2rem 0 0.2rem 0;
+}
+
