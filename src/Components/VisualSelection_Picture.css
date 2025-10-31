@@ -45,7 +45,8 @@
   align-items: center;
   overflow: hidden;
   border: 2px solid #c1bfbfff;
-  transition: border 0.2s;
+  box-sizing: border-box;
+  transition: box-shadow 0.2s, border-color 0.2s;
   background: #fff;
   padding-bottom: 0.5em;
 }
@@ -78,7 +79,8 @@
 
 /* Selection effect with corrected variable name */
 .visual-selection-picture.selected {
-  border: 7px solid var(--primary-yellow, #ffd600);
+  border: 2px solid var(--primary-yellow, #ffd600);
+  box-shadow: 0 0 0 5px var(--primary-yellow, #ffd600);
 }
 
 /* Modal backdrop covering the viewport */

@@ -327,7 +327,20 @@ const VisualSelectionWord = () => {
                 Please review your chosen picture{selected.length > 1 ? "s" : ""} below.
                 <br /> Do you wish to proceed?
               </h2>
-              <div className="selected-pictures-preview-picture">
+              <div className="selected-pictures-preview-picture"
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+    gap: "16px",
+    justifyContent: "center",
+    alignItems: "start",
+    marginBottom: 20,
+    width: "100%",
+    padding: "8px 0",
+    maxHeight: "50vh",
+    overflowY: "auto"
+  }}
+>
                 {selected.map(idx => {
                   const imgSrc = items[idx];
                   const label = imgSrc.split('/').pop().split('.')[0].replace(/_/g, ' ');
@@ -340,37 +353,52 @@ const VisualSelectionWord = () => {
                         flexDirection: "column",
                         alignItems: "center",
                         width: 180,
-                        height: 210,
+                        height: 180,
                         border: "2px solid #c1bfbfff",
                         borderRadius: 4,
                         background: "#fff",
                         boxSizing: "border-box",
                         margin: 4,
-                        paddingBottom: 0,
-                        marginBottom: 0 // <-- Add this line
+                        padding: 0
                       }}
                     >
-                      <img
-                        src={imgSrc}
-                        alt={`preview-${idx}`}
+                      <div
                         style={{
                           width: "100%",
-                          height: 120,
-                          objectFit: "contain",
-                          background: "#fff",
-                          display: "block"
+                          height: 110, // slightly less height for image area
+                          overflow: "hidden",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          marginBottom: 0 // remove margin between image and label
                         }}
-                      />
+                      >
+                        <img
+                          src={imgSrc}
+                          alt={`preview-${idx}`}
+                          style={{
+                            width: "100%",
+                            height: "auto",
+                            display: "block"
+                          }}
+                        />
+                      </div>
                       <div
                         className="picture-label"
                         style={{
-                          marginTop: 4,
+                          marginTop: 2, // reduce space between image and label
+                          marginBottom: 0,
                           fontWeight: "bold",
                           textAlign: "center",
                           fontSize: "1.1rem",
                           color: "#222",
                           textTransform: "capitalize",
-                          width: "100%"
+                          width: "100%",
+                          lineHeight: 1.1,
+                          minHeight: 28,
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center"
                         }}
                       >
                         {label}
