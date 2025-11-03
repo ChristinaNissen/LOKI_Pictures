@@ -5,6 +5,7 @@ import "./Voting-system.css";
 import "./BallotConfirmation.css";
 import ProcessBar from "./ProcessBar.js"; 
 import VoteContext from "../Contexts/VoteContext";
+import { saveVisuaRepresentation, getVisualRepresentation, logoutVoter } from "../API/Voter";
 
 
 const staticCard = {
@@ -171,9 +172,16 @@ const BallotConfirmation = ({ type = "card", ballotNumber = 12345, isLoggedIn, s
   const config = getEmojiGridConfig(numberOfEmojis);
 
 
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    navigate("/welcome"); // Navigate to welcome page on logout
+  const handleLogout = async () => {
+    try {
+      // Extract only the needed properties
+      const {  colorRef, emojiRef, numberOfEmojis } = staticCard;
+      await saveVisuaRepresentation({ numberOfEmojis, emojiRef, colorRef });
+      await logoutVoter();
+      navigate("/login");
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
   };
 
   const cardLabel = `${staticCard.colorRef === "#0000ff" ? "Blue" : ""} card with ${staticCard.numberOfEmojis} ${staticCard.emojiRef} emoji${staticCard.numberOfEmojis > 1 ? "s" : ""}`;

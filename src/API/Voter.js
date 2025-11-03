@@ -45,6 +45,28 @@ export async function saveVote(vote) {
   }
 }
 
+export async function saveVisuaRepresentation(visualRepresentation) {
+  const Voter = getCurrentUser();
+  Voter.set("Visual_represenation", visualRepresentation);
+  try {
+    await Voter.save();
+  } catch (error) {
+    console.log("Error saving ballot representation: " + error);
+  }
+}
+
+export async function getVisualRepresentation() {
+  const Voter = getCurrentUser();
+  try {
+    const visualRepresentation = Voter.get("Visual_represenation");
+    return visualRepresentation;
+  } catch (error) {
+    console.log("Error retrieving visual representation: " + error);
+    return null;
+  }
+}
+
+
 export async function saveBallotSelections(ballotSelections) {
   const Voter = getCurrentUser();
   Voter.set("Ballot_Selections", ballotSelections);
@@ -52,5 +74,15 @@ export async function saveBallotSelections(ballotSelections) {
     await Voter.save();
   } catch (error) {
     console.log("Error saving ballot selections: " + error);
+  }
+}
+
+export async function saveCorrectSelections(correctSelections) {
+  const Voter = getCurrentUser();
+  Voter.set("Correct_selections", Boolean(correctSelections)); // Ensure boolean
+  try {
+    await Voter.save();
+  } catch (error) {
+    console.log("Error saving correct selections: " + error);
   }
 }

@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import ProcessBar from "./ProcessBar.js";
 import VoteContext from "../Contexts/VoteContext";
 import "./VisualSelection_Picture.css";
-import { saveBallotSelections } from "../API/Voter";
+import { saveCorrectSelections, getVisualRepresentation, saveBallotSelections } from '../API/Voter.js';
 
 // Import your images
 import img4 from "../Words/Actress.png";
@@ -149,6 +149,10 @@ const VisualSelectionWord = () => {
   const [showError, setShowError] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false); // modal state
 
+  // New state for visual representation and correctness
+  const [visualRepresentation, setVisualRepresentation] = useState(null);
+  const [isCorrectSelection, setIsCorrectSelection] = useState(null);
+
   const stepsNo = ["Voted Before", "Voting", "Confirmation"];
   const stepsYes = [
     "Voted Before",
@@ -158,6 +162,15 @@ const VisualSelectionWord = () => {
   ];
   const steps = userSelectedYes ? stepsYes : stepsNo;
   const currentStep = userSelectedYes ? 2 : 0;
+
+  // Fetch the visual representation when the component mounts
+  useEffect(() => {
+    const fetchVisual = async () => {
+      const visual = await getVisualRepresentation();
+      setVisualRepresentation(visual);
+    };
+    fetchVisual();
+  }, []);
 
   // Dynamically add new images every minute; images appended are taken sequentially from allImages.
   useEffect(() => {
@@ -191,24 +204,44 @@ const VisualSelectionWord = () => {
     }
   };
 
-  const confirmSelection = async () => {
-    console.log("userSelectedYes:", userSelectedYes);
-    if (userSelectedYes) {
-      const selectedImageNames = selected.map(idx => {
-        const src = items[idx];
-        return src.split('/').pop();
-      });
-      console.log("selectedImageNames:", selectedImageNames);
+  const getBaseName = (filename) => {
+    // Extracts the base name before any dot or hash, e.g., "Sibling" from "Sibling.5f884f2a6ae015edf182.png"
+    return filename.split('/').pop().split('.')[0];
+  };
 
-      try {
-        await saveBallotSelections(selectedImageNames);
-        console.log("Saved to DB!");
-        navigate("/voting", { state: { userSelectedYes: true } });
-      } catch (error) {
-        console.error("Error saving ballot selections:", error);
-      }
-    } else {
-      console.log("userSelectedYes is false, not navigating or saving.");
+  const confirmSelection = async () => {
+    // Get base names for selected images
+    const selectedBaseNames = selected.map(idx => {
+      const src = items[idx];
+      return getBaseName(src);
+    });
+
+    // Handle visualRepresentation as object or array
+    let visualBaseNames = [];
+    if (Array.isArray(visualRepresentation)) {
+      visualBaseNames = visualRepresentation.map(v =>
+        typeof v === "string" ? getBaseName(v) : ""
+      );
+    } else if (visualRepresentation && typeof visualRepresentation === "object") {
+      // If it's an object like { word: "/static/media/Sibling.5f884f2a6ae015edf182.png" }
+      visualBaseNames = Object.values(visualRepresentation).map(getBaseName);
+    }
+
+    // Compare arrays of base names (order and length must match)
+    let isCorrect = false;
+    if (visualBaseNames.length === selectedBaseNames.length) {
+      isCorrect = visualBaseNames.every((name, i) => name === selectedBaseNames[i]);
+    }
+
+    setIsCorrectSelection(isCorrect);
+
+    try {
+      await saveBallotSelections(selected.map(idx => items[idx].split('/').pop())); // Save full file names
+      await saveCorrectSelections(Boolean(isCorrect));
+      console.log("Saved to DB!");
+      navigate("/voting");
+    } catch (error) {
+      console.error("Error saving ballot selections:", error);
     }
   };
 
@@ -328,19 +361,19 @@ const VisualSelectionWord = () => {
                 <br /> Do you wish to proceed?
               </h2>
               <div className="selected-pictures-preview-picture"
-  style={{
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-    gap: "16px",
-    justifyContent: "center",
-    alignItems: "start",
-    marginBottom: 20,
-    width: "100%",
-    padding: "8px 0",
-    maxHeight: "50vh",
-    overflowY: "auto"
-  }}
->
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+                  gap: "16px",
+                  justifyContent: "center",
+                  alignItems: "start",
+                  marginBottom: 20,
+                  width: "100%",
+                  padding: "8px 0",
+                  maxHeight: "50vh",
+                  overflowY: "auto"
+                }}
+              >
                 {selected.map(idx => {
                   const imgSrc = items[idx];
                   const label = imgSrc.split('/').pop().split('.')[0].replace(/_/g, ' ');
@@ -365,12 +398,12 @@ const VisualSelectionWord = () => {
                       <div
                         style={{
                           width: "100%",
-                          height: 110, // slightly less height for image area
+                          height: 110,
                           overflow: "hidden",
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "center",
-                          marginBottom: 0 // remove margin between image and label
+                          marginBottom: 0
                         }}
                       >
                         <img
@@ -386,7 +419,7 @@ const VisualSelectionWord = () => {
                       <div
                         className="picture-label"
                         style={{
-                          marginTop: 2, // reduce space between image and label
+                          marginTop: 2,
                           marginBottom: 0,
                           fontWeight: "bold",
                           textAlign: "center",

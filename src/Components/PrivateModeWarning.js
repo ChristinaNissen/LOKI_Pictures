@@ -106,7 +106,7 @@ const PrivateModeWarning = () => {
         <a 
           href="/login" 
           className="button" 
-          style={{marginTop: "40px", width: "34%", display: "inline-block", textAlign: "center", textDecoration: "none"}}
+          style={{marginTop: "40px", width: "10%", display: "inline-block", textAlign: "center", textDecoration: "none"}}
         >
           Login
         </a>

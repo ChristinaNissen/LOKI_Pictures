@@ -8,6 +8,8 @@ import ProcessBar from "./ProcessBar.js";
 import { useLocation } from "react-router-dom";
 import VoteContext from "../Contexts/VoteContext";
 import { useContext } from "react";
+import { saveVisuaRepresentation, logoutVoter } from "../API/Voter";
+
 
 function BallotConfirmation_Picture(setIsLoggedIn) {
   const navigate = useNavigate();
@@ -30,11 +32,15 @@ function BallotConfirmation_Picture(setIsLoggedIn) {
   const steps = userSelectedYes ?  stepsYes :stepsNo;
   const currentStep = userSelectedYes ? 4 : 3;
 
-   const handleLogout = () => {
-    setIsLoggedIn(false);
-    navigate("/welcome"); // Navigate to welcome page on logout
-  };
-
+  const handleLogout = async () => {
+       try {
+          await saveVisuaRepresentation({ image_visual });
+         await logoutVoter();
+         navigate("/login");
+       } catch (error) {
+         console.error("Error during logout:", error);
+       }
+     };
 
   return (
     <div className="page-wrapper">
@@ -99,7 +105,7 @@ function BallotConfirmation_Picture(setIsLoggedIn) {
         </div>
         
 
-        <button className="button" style={{ marginTop: 40 }} onClick={() => navigate("/studyinfo2")}>
+        <button className="button" style={{ marginTop: 40 }} onClick={() => handleLogout()}>
           Logout
         </button>
       </main>

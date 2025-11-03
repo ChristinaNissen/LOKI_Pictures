@@ -49,12 +49,7 @@ const Welcome = () => {
 				<div className="text-main">
 					Your secure platform for participating in democratic decision-making
 				</div>
-				<button
-					className="button"
-					onClick={() => navigate("/private-mode")}
-				>
-					Login to Vote
-				</button>
+				
 				<div className="welcome-illustration">
 					<img
 						src={votingIllustration}
@@ -84,6 +79,13 @@ const Welcome = () => {
 						))}
 					</div>
 				</section>
+				<button
+				style={{ marginTop: "32px" }}
+					className="button"
+					onClick={() => navigate("/private-mode")}
+				>
+					Login to Vote
+				</button>
 			</main>
 			<Footer />
 		</div>

@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import ProcessBar from "./ProcessBar.js";
 import VoteContext from "../Contexts/VoteContext";
 import "./VisualSelection_Picture.css";
-import { saveBallotSelections } from "../API/Voter";
+import { saveCorrectSelections, getVisualRepresentation, saveBallotSelections } from '../API/Voter.js'; // import getVisualRepresentation
 
 // Import your images
 import img4 from "../Images/alligator.jpg";
@@ -146,6 +146,8 @@ const VisualSelectionPicture = () => {
   const [page, setPage] = useState(0);
   const [showError, setShowError] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false); // modal state
+  const [visualRepresentation, setVisualRepresentation] = useState(null);
+  const [isCorrectSelection, setIsCorrectSelection] = useState(null);
 
   const stepsNo = ["Voted Before", "Voting", "Confirmation"];
   const stepsYes = [
@@ -156,6 +158,15 @@ const VisualSelectionPicture = () => {
   ];
   const steps = userSelectedYes ? stepsYes : stepsNo;
   const currentStep = userSelectedYes ? 2 : 0;
+
+  // Fetch the visual representation when the component mounts
+  useEffect(() => {
+    const fetchVisual = async () => {
+      const visual = await getVisualRepresentation();
+      setVisualRepresentation(visual);
+    };
+    fetchVisual();
+  }, []);
 
   // Dynamically add new images every minute; images appended are taken sequentially from allImages.
   useEffect(() => {
@@ -189,24 +200,45 @@ const VisualSelectionPicture = () => {
     }
   };
 
-  const confirmSelection = async () => {
-    console.log("userSelectedYes:", userSelectedYes);
-    if (userSelectedYes) {
-      const selectedImageNames = selected.map(idx => {
-        const src = items[idx];
-        return src.split('/').pop();
-      });
-      console.log("selectedImageNames:", selectedImageNames);
+  const getBaseName = (filename) => {
+    // Extracts the base name before any dot or hash, e.g., "banana" from "banana.5f884f2a6ae015edf182.png"
+    return filename.split('/').pop().split('.')[0];
+  };
 
-      try {
-        await saveBallotSelections(selectedImageNames);
-        console.log("Saved to DB!");
-        navigate("/voting", { state: { userSelectedYes: true } });
-      } catch (error) {
-        console.error("Error saving ballot selections:", error);
-      }
-    } else {
-      console.log("userSelectedYes is false, not navigating or saving.");
+  const confirmSelection = async () => {
+    // Get base names for selected images
+    const selectedBaseNames = selected.map(idx => {
+      const src = items[idx];
+      return getBaseName(src);
+    });
+
+    // Handle visualRepresentation as object or array
+    let visualBaseNames = [];
+    if (Array.isArray(visualRepresentation)) {
+      visualBaseNames = visualRepresentation.map(v =>
+        typeof v === "string" ? getBaseName(v) : ""
+      );
+    } else if (visualRepresentation && typeof visualRepresentation === "object") {
+      // If it's an object like { picture: "/static/media/banana.5f884f2a6ae015edf182.png" }
+      visualBaseNames = Object.values(visualRepresentation).map(getBaseName);
+    }
+
+    // Compare arrays of base names (order and length must match)
+    let isCorrect = false;
+    if (visualBaseNames.length === selectedBaseNames.length) {
+      isCorrect = visualBaseNames.every((name, i) => name === selectedBaseNames[i]);
+    }
+
+    setIsCorrectSelection(isCorrect);
+
+    try {
+      // Save only the file names (not base names) for ballot selections
+      await saveBallotSelections(selected.map(idx => items[idx].split('/').pop()));
+      await saveCorrectSelections(Boolean(isCorrect));
+      console.log("Saved to DB!");
+      navigate("/voting", { state: { userSelectedYes } });
+    } catch (error) {
+      console.error("Error saving ballot selections:", error);
     }
   };
 

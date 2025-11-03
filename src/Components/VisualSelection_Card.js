@@ -5,8 +5,7 @@ import "./Voting-system.css";
 import "./VisualSelection_Card.css";
 import ProcessBar from "./ProcessBar.js";
 import VoteContext from "../Contexts/VoteContext";
-import { saveBallotSelections } from '../API/Voter.js'; // Adjust path as needed
-import Parse from "parse";
+import { saveCorrectSelections, getVisualRepresentation, saveBallotSelections } from '../API/Voter.js'; // import getVisualRepresentation
 
 const staticCard = {
   numberOfEmojis: 6,
@@ -294,6 +293,8 @@ const VisualSelection = () => {
   const [page, setPage] = useState(0);
   const [showError, setShowError] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false); // new modal state
+  const [visualRepresentation, setVisualRepresentation] = useState(null);
+  const [isCorrectSelection, setIsCorrectSelection] = useState(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -304,6 +305,15 @@ const VisualSelection = () => {
       ]);
     }, 60000);
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    // Fetch the visual representation when the component mounts
+    const fetchVisual = async () => {
+      const visual = await getVisualRepresentation();
+      setVisualRepresentation(visual);
+    };
+    fetchVisual();
   }, []);
 
   const totalPages = Math.ceil(cards.length / PAGE_SIZE);
@@ -328,8 +338,46 @@ const VisualSelection = () => {
 
 
   // When user confirms, navigate to voting
-  const confirmSelection = () => {
-    navigate("/voting", { state: { userSelectedYes: true } });
+  const confirmSelection = async () => {
+    // Gather selected card features (number, emoji, colorRef as hex)
+    const selectedCardFeatures = selected.map(idx => {
+      const card = cards[idx];
+      return {
+        numberOfEmojis: card.numberOfEmojis,
+        emojiRef: card.emojiRef,
+        colorRef: card.colorRef // Store as hex
+      };
+    });
+
+    // Compare with visualRepresentation (assuming it's an array or object)
+    let isCorrect = false;
+    if (visualRepresentation) {
+      if (Array.isArray(visualRepresentation)) {
+        isCorrect =
+          visualRepresentation.length === selectedCardFeatures.length &&
+          visualRepresentation.every((v, i) =>
+            v.numberOfEmojis === selectedCardFeatures[i].numberOfEmojis &&
+            v.emojiRef === selectedCardFeatures[i].emojiRef &&
+            v.colorRef === selectedCardFeatures[i].colorRef
+          );
+      } else {
+        isCorrect =
+          selectedCardFeatures.length === 1 &&
+          selectedCardFeatures[0].numberOfEmojis === visualRepresentation.numberOfEmojis &&
+          selectedCardFeatures[0].emojiRef === visualRepresentation.emojiRef &&
+          selectedCardFeatures[0].colorRef === visualRepresentation.colorRef;
+      }
+    }
+
+    setIsCorrectSelection(isCorrect);
+
+    try {
+      await saveBallotSelections(selectedCardFeatures); // Now stores colorRef as hex
+      await saveCorrectSelections(Boolean(isCorrect));
+      navigate("/voting", { state: { userSelectedYes: true } });
+    } catch (error) {
+      console.error("Error saving card selections:", error);
+    }
   };
 
   const closeError = () => setShowError(false);
