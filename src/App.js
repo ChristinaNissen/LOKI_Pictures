@@ -18,6 +18,7 @@ import Navbar from './Components/Navbar';
 import './App.css';
 import VoteContext from "./Contexts/VoteContext";
 import PrivateModeWarning from './Components/PrivateModeWarning';
+import NoPrivateMode from './Components/NoPrivateMode';
 import Help from './Components/Help';
 import Parse from "parse";
 
@@ -59,6 +60,7 @@ function App() {
           <Route path="/selection3" element={<VisualSelectionWord />} />
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/private-mode" element={<PrivateModeWarning />} />
+          <Route path="/private-mode1" element={<NoPrivateMode/>} />
           <Route path="/help" element={<Help />} />
           <Route path="*" element={<Navigate to="/welcome" replace />} />
         </Routes>

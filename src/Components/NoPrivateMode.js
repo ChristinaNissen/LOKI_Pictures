@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./PrivateModeWarning.css";
 import Footer from "./Footer";
 import "./Voting-system.css";
-import { FaItalic } from "react-icons/fa";
 import video from "../Assets/private1.mp4";
 
-const PrivateModeWarning = () => {
+const NoPrivateMode = () => {
   const navigate = useNavigate();
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
- 
+  const handleLoginClick = (e) => {
+    e.preventDefault();
+    setShowLoginModal(true);
+  };
+
+  const handleConfirmLogin = () => {
+    setShowLoginModal(false);
+    navigate("/login");
+  };
 
   return (
     <div className="page-wrapper">
@@ -50,7 +58,7 @@ const PrivateModeWarning = () => {
                 background: "#000",
                 boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
                 marginBottom: "8px",
-                border: "1.5px solid #ccc" 
+                border: "1.5px solid #ccc" // Softer, lighter grey border
               }}
               onTimeUpdate={e => {
                 if (e.target.currentTime >= 5) {
@@ -118,17 +126,41 @@ const PrivateModeWarning = () => {
           </div>
         </div>
         
-        <a 
-          href="/login" 
-          className="button" 
-          style={{marginTop: "40px", width: "10%", display: "inline-block", textAlign: "center", textDecoration: "none"}}
+        <a
+          href="/login"
+          className="button"
+          style={{
+            marginTop: "40px",
+            width: "10%",
+            display: "inline-block",
+            textAlign: "center",
+            textDecoration: "none"
+          }}
+          onClick={handleLoginClick}
+          onContextMenu={e => e.preventDefault()}
         >
           Login
         </a>
+        {showLoginModal && (
+          <div className="study-modal-backdrop">
+            <div className="study-modal">
+              <h2>Before You Continue</h2>
+              <p>
+                For the purposes of this study, please do not use private browsing or open the login in a new window or tab.<br /><br />
+                To ensure your interaction is properly registered, simply click the <span className="blue-bg-highlight">Login</span> button below to proceed.
+              </p>
+              <div className="study-modal-actions">
+                <button style={{ fontWeight: "bold" }} className="study-button" onClick={handleConfirmLogin}>
+                  Login
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </main>
       <Footer />
     </div>
   );
 };
 
-export default PrivateModeWarning;
+export default NoPrivateMode;

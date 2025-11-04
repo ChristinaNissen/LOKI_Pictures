@@ -13,3 +13,90 @@
   white-space: normal !important;
   margin: 0 !important;
 }
+
+.modal-backdrop-no-private-mode {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.25); /* This darkens the area behind the modal */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+.modal-no-private-mode {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+  padding: 32px 28px;
+  min-width: 280px;
+  max-width: 90vw;
+  text-align: center;
+}
+
+/* Blue study-info modal styles */
+.study-modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.study-modal {
+  background: #e3f0ff;
+  border-radius: 16px;
+  border: 2px solid #1976d2;
+  box-shadow: 0 4px 24px rgba(25, 118, 210, 0.10);
+  padding: 40px 32px;
+  max-width: 480px;
+  width: 95vw;
+  text-align: center; /* Center text and button */
+  color: #222;
+  font-size: 1.18rem;
+}
+
+.study-modal h2 {
+  color: #1976d2;
+  font-size: 2.1rem;
+  margin-bottom: 1rem;
+}
+
+.study-modal p {
+  margin-bottom: 2rem;
+  font-size: 1.18rem;
+}
+
+.study-modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.study-modal .study-button {
+  padding: 0.7em 2.5em;
+  font-size: 1.15rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #1976d2;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  min-width: 8rem;
+}
+
+.study-modal .study-button:hover {
+  background: #0d47a1;
+}
+
+.study-modal .study-button-secondary {
+  padding: 0.7em 2.5em;
+  font-size: 1.15rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #bdbdbd;
+  color: #222;
+  cursor: pointer;
+  min-width: 8rem;
+}
