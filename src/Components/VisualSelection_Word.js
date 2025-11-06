@@ -437,18 +437,29 @@ const VisualSelectionWord = () => {
                 <br /> Do you wish to proceed?
               </h2>
               <div className="selected-pictures-preview-picture"
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-                  gap: "16px",
-                  justifyContent: "center",
-                  alignItems: "start",
-                  marginBottom: 20,
-                  width: "100%",
-                  padding: "8px 0",
-                  maxHeight: "50vh",
-                  overflowY: "auto"
-                }}
+                style={
+                  selected.length < 3
+                    ? {
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        gap: "20px",
+                        margin: "0 auto 32px auto",
+                        padding: 0,
+                        width: "100%",
+                      }
+                    : {
+                        display: "grid",
+                        gridTemplateColumns: "repeat(3, 140px)",
+                        gap: "20px",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        maxWidth: 460,
+                        margin: "0 auto 32px auto",
+                        padding: 0,
+                        width: "100%",
+                      }
+                }
               >
                 {selected.map(idx => {
                   const imgSrc = items[idx];
@@ -461,14 +472,14 @@ const VisualSelectionWord = () => {
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",
-                        width: 180,
+                        width: 140,
                         height: 180,
                         border: "2px solid #c1bfbfff",
-                        borderRadius: 4,
+                        borderRadius: 8,
                         background: "#fff",
                         boxSizing: "border-box",
-                        margin: 4,
-                        padding: 0
+                        padding: 0,
+                        margin: 0,
                       }}
                     >
                       <div
@@ -479,7 +490,6 @@ const VisualSelectionWord = () => {
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "center",
-                          marginBottom: 0
                         }}
                       >
                         <img
@@ -488,15 +498,15 @@ const VisualSelectionWord = () => {
                           style={{
                             width: "100%",
                             height: "auto",
-                            display: "block"
+                            display: "block",
+                            objectFit: "contain",
                           }}
                         />
                       </div>
                       <div
                         className="picture-label"
                         style={{
-                          marginTop: 2,
-                          marginBottom: 0,
+                          marginTop: 8,
                           fontWeight: "bold",
                           textAlign: "center",
                           fontSize: "1.1rem",
@@ -507,7 +517,7 @@ const VisualSelectionWord = () => {
                           minHeight: 28,
                           display: "flex",
                           alignItems: "center",
-                          justifyContent: "center"
+                          justifyContent: "center",
                         }}
                       >
                         {label}
@@ -516,7 +526,7 @@ const VisualSelectionWord = () => {
                   );
                 })}
               </div>
-              <div className="modal-actions-picture">
+              <div className="modal-actions-picture" style={{ marginTop: 24, display: "flex", justifyContent: "center", gap: 16 }}>
                 <button className="button" onClick={confirmSelection}>
                   Yes, proceed
                 </button>
