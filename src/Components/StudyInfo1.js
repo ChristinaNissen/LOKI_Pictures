@@ -33,6 +33,8 @@ const StudyInfo1 = () => {
 
   return (
     <div className="study-center-bg">
+        <div className="inner-box-info padding-top-info-page" style={{ maxWidth: "35rem" }}>
+
         <h1>Before you start</h1>
                   <hr className="step-divider" />
 
@@ -97,6 +99,7 @@ const StudyInfo1 = () => {
             </button>
           </div>
         </form>
+        </div>
       </div>
   );
 };

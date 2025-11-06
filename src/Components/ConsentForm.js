@@ -160,7 +160,7 @@ const ConsentForm = () => {
         <h3 className="title-margin-top">Researchers</h3>
         <ul>
           <li>
-            Christina Frederikke Nissen (
+            Christina Nissen (
             <a
               className="info-link"
               href="mailto:chfn@itu.dk"

@@ -23,7 +23,7 @@
 
 .study-button {
   padding: 0.7em 2.5em;
-  font-size: 1.15rem;
+  font-size: 1.1rem!important;
   border: none;
   border-radius: 6px;
   background-color: #1976d2;
@@ -34,16 +34,19 @@
   margin-top: 0.7em;
   width: auto; /* only as wide as content */
   min-width: 8rem; /* optional: minimum width for consistency */
+  font-weight: bold;
 }
 
 .study-button:hover {
   background: #0d47a1;
+  font-weight: bold;
 }
 
 .study-button:disabled {
   background-color: #bdbdbd; /* grey when disabled */
   color: #f5f5f5;
   cursor: not-allowed;
+  font-weight: bold;
 }
 
 .study-list {
@@ -104,20 +107,24 @@
 .step-divider {
   border: none;
   border-top: 1px solid #000; /* black and thin */
-  margin: 2.5rem 0;
+  margin: 2rem 0!important;
   height: 0;
   background: transparent !important;
   box-shadow: none !important;
-}
-
-.step-divider:last-of-type {
-  margin-bottom: 0rem;
+  
 }
 
 .step-divider:first-of-type {
   margin-top: 0rem;
   margin-bottom: 2rem;
 }
+
+.step-divider:last-of-type {
+  margin-bottom: 0rem;
+  margin-top: 0rem;
+}
+
+
 
 .step-row {
   display: grid;
@@ -128,7 +135,7 @@
 }
 
 .step-number {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: bold;
   text-align: center;
   line-height: 1;
@@ -146,5 +153,124 @@
 .step-content strong,
 .step-content .blue-bg-highlight {
   margin: 0.2rem 0 0.2rem 0;
+}
+
+@media (max-width: 600px) {
+  .study-center-bg {
+    padding: 16px 0;
+  }
+
+  .study-center-bg > * {
+    max-width: 100vw;
+    width: 100vw;
+  }
+
+  .study-center-content {
+    padding: 18px 6px;
+    border-radius: 10px;
+    max-width: 100vw;
+    width: 100vw;
+    font-size: 1rem;
+  }
+
+  .study-center-bg h1 {
+    font-size: 1.4rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .study-center-bg h3 {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+
+  .study-list {
+    max-width: 98vw;
+    font-size: 1rem;
+    margin: 1rem 0;
+    padding-left: 1.2em;
+  }
+
+  .study-button {
+    width: 100%;
+    min-width: 0;
+    font-size: 1rem;
+    align-self: stretch;
+    margin-top: 1em;
+    padding: 0.8em 0.5em;
+  }
+
+  .step-row {
+    grid-template-columns: 2.2rem 1fr;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .step-number {
+    font-size: 2rem;
+    margin-top: 0;
+  }
+
+  .step-content {
+    gap: 0.4rem;
+    font-size: 1rem;
+  }
+
+  .inner-box-info {
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    box-sizing: border-box;
+    width: 100vw;
+    max-width: 100vw;
+    line-height: 1.2;
+
+  }
+
+  .padding-top-info-page {
+    padding-top: 16px !important;
+  }
+
+  .info-link {
+    word-break: break-all;
+  }
+
+  .inner-box-info h1,
+  .inner-box-info h2,
+  .inner-box-info h3 {
+    text-align: center;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .inner-box-info h1 {
+    font-size: 1.5rem;
+  }
+
+  .inner-box-info h2 {
+    font-size: 1.25rem;
+  }
+
+  .inner-box-info h3 {
+    font-size: 1.1rem;
+  }
+
+  .inner-box-info p,
+  .inner-box-info ul,
+  .inner-box-info li {
+    text-align: left;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .inner-box-info label {
+    font-size: 1rem;
+  }
+
+  .study-center-bg .study-button,
+  .study-button {
+    font-weight: bold;
+    font-size: 1rem !important;
+    padding: 0.8em 0.5em;
+  }
 }
 
