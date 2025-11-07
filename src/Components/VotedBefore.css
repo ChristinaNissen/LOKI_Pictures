@@ -81,6 +81,16 @@
     display: block;
     font-size: 1rem;
   }
+
+  .voted-before-h1{
+    text-align:center !important;
+  }
+
+  .text-main.text-voted-before{
+        text-align:center !important;
+  }
+
+
 }
 
 

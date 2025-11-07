@@ -45,7 +45,7 @@ const Welcome = () => {
 		<div className="page-wrapper">
 			<main className="welcome-main">
 				<h1>Welcome to Denmark's Online Voting Portal</h1>
-				<div className="text-main">
+				<div className="text-main text-welcome-main">
 					Your secure platform for participating in democratic decision-making
 				</div>
 				

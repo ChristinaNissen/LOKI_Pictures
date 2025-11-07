@@ -106,7 +106,7 @@ const Voting = () => {
         <div className="button-wrapper">
           <button
             type="submit"
-            className="button next-button"
+            className="button next-button-voting"
             form="votingForm"
           >
             Cast vote
@@ -126,16 +126,16 @@ const Voting = () => {
         {showConfirm && (
           <div className="modal-backdrop-voting">
             <div className="modal-voting">
-              <p style={{fontSize:"18px"}}>
+              <p className="modal-voting-text">
                 Are you sure you want to cast your vote for{" "}
                 <strong>{selectedCandidate?.name}</strong>?
               </p>
               <div className="modal-actions-voting">
-                <button className="button" onClick={handleConfirm}>
+                <button className="button modal-voting-button" onClick={handleConfirm}>
                   Yes, cast vote
                 </button>
                 <button
-                  className="button-secondary"
+                  className="button-secondary modal-voting-button"
                   onClick={handleCancel}
                 >
                   Cancel

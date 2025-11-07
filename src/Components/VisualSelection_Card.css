@@ -378,3 +378,10 @@
   position: absolute;
   z-index: 1; /* or remove z-index if not needed */
 }
+
+@media(width:600px){
+  .intro-container{
+    margin:0 auto 0px auto!important;
+  }
+
+}

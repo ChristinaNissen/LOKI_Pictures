@@ -23,7 +23,7 @@ const NoPrivateMode = () => {
     <div className="page-wrapper">
       <main className="welcome-main">
         <h1>Private Browsing Recommended</h1>
-        <div className="text-main">See below how to enable private browsing mode when using the voting platform.</div>
+        <div className="text-main text-main-private">See below how to enable private browsing mode when using the voting platform.</div>
 
         <div className="security-box">
           <p className="text-small">
@@ -34,9 +34,9 @@ const NoPrivateMode = () => {
           </p>
         </div>
         <div className="card">
-          <h2 style={{ width: "100%", textAlign: "left", margin: "0 0 10px 0px" }}>
+          <h1 style={{ width: "100%", textAlign: "left", margin: "0 0 10px 0px" }}>
             How to Enable Private Browsing
-          </h2>
+          </h1>
           <p className="text-small" style={{textAlign:"left", marginTop:"0px", marginBottom:"10px"}}>
             Below are two simple methods to open a private browsing window in popular web browsers.
           </p>
@@ -128,14 +128,8 @@ const NoPrivateMode = () => {
         
         <a
           href="/login"
-          className="button"
-          style={{
-            marginTop: "40px",
-            width: "10%",
-            display: "inline-block",
-            textAlign: "center",
-            textDecoration: "none"
-          }}
+          className="button private-next-button"
+         
           onClick={handleLoginClick}
           onContextMenu={e => e.preventDefault()}
         >

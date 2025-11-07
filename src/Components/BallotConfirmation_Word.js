@@ -52,7 +52,7 @@ function BallotConfirmation_Word(setIsLoggedIn) {
 
           <div className="intro-container">
           <h1 className="intro-title">Confirmation</h1>
-          <div className="text-main">
+          <div className="text-main text-main-confirmation">
             You have cast your ballot succesfully! Below is a visual presentation of your cast ballot. 
           </div>
           <div className="security-box">
@@ -65,7 +65,7 @@ function BallotConfirmation_Word(setIsLoggedIn) {
 
 
 
-        <div className="card-wide">
+        <div className="card-wide card-confirmation">
          <h1 className="card-title" style={{ width: "100%", textAlign: "left", margin: "0 0 10px 40px" }}>
             Word 
           </h1>
@@ -109,7 +109,7 @@ function BallotConfirmation_Word(setIsLoggedIn) {
         </div>
         
 
-        <button className="button" style={{marginTop: "40px"}} onClick={() => setShowLogoutConfirm(true)}>
+        <button className="button logout-button-confirmation" style={{marginTop: "40px"}} onClick={() => setShowLogoutConfirm(true)}>
           Logout
         </button>
       {showLogoutConfirm && (

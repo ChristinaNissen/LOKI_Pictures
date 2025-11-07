@@ -63,8 +63,6 @@
   box-shadow: none;
   outline: none;
   display: inline-block;
-  height: 48px; /* Ensures consistent height with .button */
-  line-height: 24px; /* Vertically centers text */
 }
 
 .button-secondary:hover {
@@ -327,25 +325,7 @@ body {
     box-sizing: border-box;
   }
 
-  /* Modal styles */
-  .modal-backdrop-voting {
-    align-items: flex-start;
-    padding-top: 20vw;
-  }
 
-  .modal-voting {
-    min-width: 0;
-    max-width: 98vw;
-    padding: 14px 4px;
-    border-radius: 8px;
-    font-size: 1rem;
-  }
-
-  .modal-actions-voting {
-    gap: 8px;
-    flex-direction: column;
-    width: 100%;
-  }
 
   /* Error overlay and message */
   .error-overlay {
@@ -368,27 +348,6 @@ body {
 
    
 
-  @media (max-width: 600px) {
-  h1:first-of-type,
-  .text-main:first-of-type {
-    text-align: left;
-    padding-left: 16px;
-    padding-right: 16px;
-    box-sizing: border-box;
-  }
-}
-
-@media (max-width: 600px) {
-  .welcome-main > h1,
-  .welcome-main > .text-main {
-    text-align: left !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    box-sizing: border-box;
-  }
-}
 
 @media (max-width: 600px) {
   html, body {

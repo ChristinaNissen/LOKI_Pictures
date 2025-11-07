@@ -5,7 +5,7 @@
 
 .next-button {
   /* Width nearly to 100% of its parent, but with some side gaps */
-  width: calc(100% - 40px);
+  width: calc(100% - 100px);
   margin: 20px;
   max-width: 100%;
   box-sizing: border-box;
@@ -14,9 +14,13 @@
 .button-wrapper {
   width: 100%;
   max-width: 800px; /* Match the card-wide max-width */
-  margin: 24px auto 0 auto;
+  margin: 30px auto 0 auto;
   padding: 0 20px; /* Side spacing */
   box-sizing: border-box;
+  align-items:center;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
 }
 
 .ballot-row {
@@ -95,6 +99,17 @@
   text-align: left;
   margin: 0 0 10px 40px;
 }
+.modal-voting-text{
+  font-size:18px;
+}
+
+.next-button-voting {
+    width: 100%;
+    max-width: 350px;
+    min-width: 120px;
+    margin: 0px auto 0 auto;
+    display: block;
+  }
 
 @media (max-width: 600px) {
 
@@ -114,9 +129,9 @@
     margin-top: 24px;       /* More space above buttons */
   }
 
-  button .next-button {
-    margin: 20px 0 0 0;
-    padding: 12px 0;
+  .next-button-voting {
+    max-width:40vw;
+    margin: 5px 0 0 0;
     align-items: center;
   }
 
@@ -156,10 +171,69 @@
 }
 
 @media (max-width: 600px) {
+
   .card-wide h1.ballot-title,
   .card-wide .ballot-title {
     width: 100%;
-    margin-left: 0;
+    margin-left: 20px;
     margin-right: 0;
   }
+
+  .modal-backdrop-voting {
+    padding: 0 !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .modal-voting {
+    max-width: 90vw !important;
+    min-width: 0 !important;
+    padding: 16px 8px !important;
+    border-radius: 10px !important;
+    box-sizing: border-box !important;
+    margin: 0 auto !important;
+  }
+
+  .modal-actions-voting {
+    flex-direction: row !important;
+    gap: 10px !important;
+    margin-top: 0px !important;
+    align-items: center !important;
+  }
+
+  .modal-voting-button{
+    width: 80% !important;
+    font-size: 1rem !important;
+    padding: 5px 0 !important;
+    margin: 0 0 12px 0 !important;
+    box-sizing: border-box !important;
+    border-radius: 8px !important;
+  }
+
+  .next-button-voting {
+    width: 90vw !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
+    display: block !important;
+    text-align: center !important;
+  }
 }
+
+/* Center buttons in the modal on desktop */
+.modal-actions-voting {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Make the "Yes, cast vote" button auto width and centered */
+.modal-voting-button {
+  min-width: 160px;
+  max-width: 240px;
+  margin: 0;
+  display: block;
+  text-align: center;
+}
+
+

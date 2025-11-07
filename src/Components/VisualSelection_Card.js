@@ -457,9 +457,9 @@ const VisualSelection = () => {
     <div className="page-wrapper">
       <main className="welcome-main">
         <ProcessBar steps={steps} currentStep={currentStep} />
-        <div className="intro-container">
-          <h1>Identification of previously cast ballots</h1>
-          <div className="text-main" style={{ maxWidth: "800px", textAlign: "center" }}>
+        <div className="intro-container intro-selection">
+          <h1 className="intro-title">Identification of previously cast ballots</h1>
+          <div className="text-main text-main-confirmation" style={{ maxWidth: "800px", textAlign: "center" }}>
             Please select all cards below that you have seen when casting your previous ballots.
           </div>
           <div className="security-box">

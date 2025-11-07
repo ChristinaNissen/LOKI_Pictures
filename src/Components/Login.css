@@ -172,22 +172,11 @@
     font-size: 17.6px;
   }
 
-  h1, .text-main:first-of-type {
-    text-align: left!important;
-  }
+ 
 
   .welcome-main {
     padding-left: 16px;
     padding-right: 16px;
-    box-sizing: border-box;
-  }
-  .welcome-main > h1,
-  .welcome-main > .text-main {
-    text-align: left !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
     box-sizing: border-box;
   }
 
@@ -208,5 +197,9 @@
     align-self: center; /* centers only the button */
     margin-left: 0;
     margin-right: 0;
+  }
+
+  .text-main.login-text{
+    text-align:center !important;
   }
 }

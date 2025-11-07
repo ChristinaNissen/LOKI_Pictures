@@ -193,7 +193,7 @@ const BallotConfirmation = ({ type = "card", ballotNumber = 12345, isLoggedIn, s
         <ProcessBar steps={steps} currentStep={currentStep} />
          <div className="intro-container">
           <h1 className="intro-title">Confirmation</h1>
-          <div className="text-main">
+          <div className="text-main text-main-confirmation">
             You have cast your ballot succesfully! Below is a visual presentation of your cast ballot. 
           </div>
           <div className="security-box">
@@ -203,7 +203,7 @@ const BallotConfirmation = ({ type = "card", ballotNumber = 12345, isLoggedIn, s
             </p>
           </div>
         </div>
-        <div className="card-wide">
+        <div className="card-wide card-confirmation">
           <h1 className="card-title" style={{ width: "100%", textAlign: "left", margin: "0 0 10px 40px" }}>
             Card 
           </h1>
@@ -220,7 +220,7 @@ const BallotConfirmation = ({ type = "card", ballotNumber = 12345, isLoggedIn, s
       </li>
     </ul>
   </div>
-          <div className="confirmation-visual">
+          <div className="confirmation-visual card-visual">
             {type === "card" && (
               <div
                 className="confirmation-card"
@@ -270,7 +270,7 @@ const BallotConfirmation = ({ type = "card", ballotNumber = 12345, isLoggedIn, s
             </div>
           </div>
         </div>
-         <button className="button" style={{marginTop: "40px"}} onClick={() => setShowLogoutConfirm(true)}>
+         <button className="button logout-button-confirmation" style={{marginTop: "40px"}} onClick={() => setShowLogoutConfirm(true)}>
   Logout
 </button>
 {showLogoutConfirm && (

@@ -13,10 +13,9 @@ const PrivateModeWarning = () => {
 
   return (
     <div className="page-wrapper">
-      <main className="welcome-main">
+      <main className="welcome-main ">
         <h1>Private Browsing Recommended</h1>
-        <div className="text-main">See below how to enable private browsing mode when using the voting platform.</div>
-
+        <div className="text-main text-main-private">See below how to enable private browsing mode when using the voting platform.</div>
         <div className="security-box">
           <p className="text-small">
            <strong>Security Feature:</strong><br/>
@@ -26,9 +25,9 @@ const PrivateModeWarning = () => {
           </p>
         </div>
         <div className="card">
-          <h2>
+          <h1>
             How to Enable Private Browsing
-          </h2>
+          </h1>
           <p className="text-small" style={{textAlign:"left", marginTop:"0px", marginBottom:"10px"}}>
             Below are two simple methods to open a private browsing window in popular web browsers.
           </p>
@@ -103,8 +102,7 @@ const PrivateModeWarning = () => {
         
         <a 
           href="/login" 
-          className="button" 
-          style={{marginTop: "40px", width: "10%", display: "inline-block", textAlign: "center", textDecoration: "none"}}
+          className="button private-next-button" 
         >
           Login
         </a>

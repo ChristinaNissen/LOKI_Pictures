@@ -70,7 +70,7 @@ const handleSubmit = async (e) => {
     <div className="page-wrapper">
       <main className="welcome-main">
         <h1>Login to your account</h1>
-        <div className="text-main">
+        <div className="text-main login-text">
           Please enter your details below to access the online voting system.
         </div>
         <div className="login-card">

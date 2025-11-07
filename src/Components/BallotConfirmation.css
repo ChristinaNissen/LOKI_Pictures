@@ -190,6 +190,38 @@
 
 
 @media (max-width: 600px) {
+
+
+  .text-main.text-main-confirmation{
+    text-align:center!important;
+  }
+  .intro-container{
+   width: 80vw !important;
+    max-width: 80vw !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+
+  }
+  .security-box{
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
+
+  }
+
+   .card-wide.card-confirmation {
+    width: 80vw !important;
+    max-width: 80vw !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+  }
+
   .intro-title {
     text-align: center !important;
     width: 100%;
@@ -212,14 +244,41 @@
     
   }
 
-  .instruction-list ul,
-  .instruction-list ul li {
-    font-size: 16px !important;
-    color:#222;
-    line-height: 1.5;
-    padding-right:10px;
-    margin-bottom:0;
+ .instruction-list {
+    padding-top: 12px !important;
+    padding-bottom:0!important;
   }
+
+  .instruction-list ul {
+    font-size: 16px !important;
+    color: #000;
+    line-height: 1.5 !important;
+    padding-left: 5px !important;
+    padding-right:5px !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;    
+  }
+  .instruction-list ul li {
+    margin-bottom: 16px !important;
+  }
+  .modal-confirmation {
+    max-width: 80vw !important;
+    min-width: 0 !important;
+    padding: 16px 16px !important;
+  }
+
+  .modal-confirmation.h2{
+    text-align: center!important;
+  }
+
+  .logout-button-confirmation{
+    max-width:40vw;
+  }
+
+  .confirmation-visual.card-visual{
+    margin-top:0!important;
+  }
+
 
      
   

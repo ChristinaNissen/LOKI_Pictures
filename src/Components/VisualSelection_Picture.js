@@ -269,8 +269,8 @@ const VisualSelectionPicture = () => {
       <main className="welcome-main">
         <ProcessBar steps={steps} currentStep={currentStep} />
         <div className="intro-container">
-          <h1>Identification of Previously Cast Ballots</h1>
-          <div className="text-main">
+          <h1 className="intro-title">Identification of Previously Cast Ballots</h1>
+          <div className="text-main text-main-confirmation">
             Please select all pictures below that you have seen when casting your previous ballots.
           </div>
           <div className="security-box">
