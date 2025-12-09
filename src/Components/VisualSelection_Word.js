@@ -293,9 +293,6 @@ const VisualSelectionWord = () => {
           </div>
         </div>
         <div className="card" style={{ maxWidth: 1000, width: "100%", margin: "0 auto" }}>
-          <div className="selected-count-inside">
-            {selected.length} selected
-          </div>
           <h1 style={{ width: "100%", textAlign: "left", margin: "0 0 10px 55px" }}>
             Select your words
           </h1>
@@ -360,8 +357,20 @@ const VisualSelectionWord = () => {
   </div>
 </div>
 <hr className="filter-divider-visual" />
-          <div className="visual-select-grid-pictures">
-            {pagedItems.length === 0 ? (
+          
+          <div className="selected-scroll-wrapper">
+            <div className="selected-count-inside">
+              {selected.length} selected
+            </div>
+            
+            <p className="scroll-instruction-text">
+              Scroll through the words and use the "Next page" button below to see more.
+            </p>
+          </div>
+          
+          <div className="pictures-scroll-container">
+            <div className="visual-select-grid-pictures">
+              {pagedItems.length === 0 ? (
               <p className="no-pictures-message">No pictures found. Try adjusting your search.</p>
             ) : (
               pagedItems.map((imgSrc, idx) => {
@@ -412,18 +421,19 @@ const VisualSelectionWord = () => {
                 );
               })
             )}
+            </div>
           </div>
-          <div style={{ display: "flex", justifyContent: "center", gap: "16px", marginTop: "24px" }}>
+          <div className="pagination-buttons" style={{ display: "flex", justifyContent: "center", gap: "16px", marginTop: "16px" }}>
             <button className="button" onClick={() => setPage(page - 1)} disabled={page === 0}>
-              Previous
+              ← Previous page
             </button>
             <button className="button" onClick={() => setPage(page + 1)} disabled={page >= totalPages - 1}>
-              Next
+              Next page →
             </button>
           </div>
         </div>
-        <div style={{ display: "flex", justifyContent: "center", marginTop: "32px" }}>
-          <button onClick={handleNext} className="button">
+        <div style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>
+          <button onClick={handleNext} className="button confirm-selection-button">
             Confirm selection
           </button>
         </div>
@@ -440,10 +450,11 @@ const VisualSelectionWord = () => {
         {showConfirm && (
           <div className="modal-backdrop-picture">
             <div className="modal-picture">
-              <h2>
-                Please review your chosen picture{selected.length > 1 ? "s" : ""} below.
+
+              <p style={{fontSize: "18px", fontWeight: "bold"}}>
+                Please review your chosen word{selected.length > 1 ? "s" : ""} below.
                 <br /> Do you wish to proceed?
-              </h2>
+              </p>
               <div className="selected-pictures-preview-picture"
                 style={
                   selected.length < 3
@@ -475,7 +486,7 @@ const VisualSelectionWord = () => {
                   return (
                     <div
                       key={idx}
-                      className="preview-item-picture"
+                      className="preview-item-picture preview-item-word"
                       style={{
                         display: "flex",
                         flexDirection: "column",
@@ -491,6 +502,7 @@ const VisualSelectionWord = () => {
                       }}
                     >
                       <div
+                        className="preview-word-img-container"
                         style={{
                           width: "100%",
                           height: 110,
@@ -504,7 +516,9 @@ const VisualSelectionWord = () => {
                           src={imgSrc}
                           alt={`preview-${idx}`}
                           style={{
-                            width: "100%",
+                            maxWidth: "100%",
+                            maxHeight: "100%",
+                            width: "auto",
                             height: "auto",
                             display: "block",
                             objectFit: "contain",
@@ -514,7 +528,7 @@ const VisualSelectionWord = () => {
                       <div
                         className="picture-label"
                         style={{
-                          marginTop: 8,
+                          marginTop: 0,
                           fontWeight: "bold",
                           textAlign: "center",
                           fontSize: "1.1rem",
@@ -522,7 +536,7 @@ const VisualSelectionWord = () => {
                           textTransform: "capitalize",
                           width: "100%",
                           lineHeight: 1.1,
-                          minHeight: 28,
+                          padding: "4px 2px",
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "center",

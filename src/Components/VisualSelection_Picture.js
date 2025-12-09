@@ -353,12 +353,15 @@ const VisualSelectionPicture = () => {
 </div>
 <hr className="filter-divider-visual" style={{ width: "95%" }} />
           
-          <div className="selected-count-inside">
-            {selected.length} selected
+          <div className="selected-scroll-wrapper">
+            <div className="selected-count-inside">
+              {selected.length} selected
+            </div>
+            
+            <p className="scroll-instruction-text">
+              Scroll through the pictures and use the "Next page" button below to see more.
+            </p>
           </div>
-          <p className="scroll-instruction">
-            Scroll through the pictures and use the "Next page" button to see more.
-          </p>
           
           <div className="pictures-scroll-container">
             <div className="visual-select-grid-pictures">
@@ -386,7 +389,7 @@ const VisualSelectionPicture = () => {
               )}
             </div>
           </div>
-          <div style={{ display: "flex", justifyContent: "center", gap: "16px", marginTop: "30px" }}>
+          <div className="pagination-buttons" style={{ display: "flex", justifyContent: "center", gap: "16px", marginTop: "16px" }}>
             <button className="button" onClick={() => setPage(page - 1)} disabled={page === 0}>
               ← Previous page
             </button>
@@ -413,10 +416,10 @@ const VisualSelectionPicture = () => {
         {showConfirm && (
           <div className="modal-backdrop-picture">
             <div className="modal-picture">
-              <h2>
-                Please review your chosen picture{selected.length > 1 ? "s" : ""} below.
+            <p style={{fontSize: "18px", fontWeight: "bold"}}>
+                Please review your chosen word{selected.length > 1 ? "s" : ""} below.
                 <br /> Do you wish to proceed?
-              </h2>
+              </p>
               <div className="selected-pictures-preview-picture">
                 {selected.map(idx => {
                   const imgSrc = items[idx];

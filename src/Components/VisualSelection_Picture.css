@@ -162,6 +162,67 @@
   text-transform: capitalize;
 }
 
+/* Scrollable container for pictures */
+.pictures-scroll-container {
+  max-height: 600px;
+  overflow-y: auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 0 auto 12px auto;
+  width: 95%;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Selected count display */
+.selected-count-inside {
+  display: block !important;
+  position: static !important;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 8px 12px !important;
+  margin: 12px 0;
+  background-color: #fafbfc !important;
+  border: 1.5px solid #d1d5db !important;
+  border-radius: 6px !important;
+  width: fit-content !important;
+  color: #666 !important;
+}
+
+/* Wrapper for selected count and scroll instruction */
+.selected-scroll-wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+  justify-content: flex-end;
+}
+
+/* Scroll instruction text */
+.scroll-instruction-text {
+  text-align: left;
+  font-size: 1.1rem;
+  color: #666;
+  margin: 0;
+  padding: 0;
+}
+
+/* Hide scroll instruction in normal design */
+.scroll-instruction {
+  display: none;
+}
+
+/* Right align selected count in normal design only */
+@media (min-width: 601px) {
+  .selected-count-inside {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+  }
+}
+
 .picture-img-wrapper {
   width: 100%;
   height: 170px; /* slightly less than .visual-selection-picture */
@@ -416,7 +477,7 @@
 
 @media (max-width: 600px) {
   .card {
-    padding: 15px 10px !important;
+    padding: 25px 10px 15px 10px !important;
   }
 
   .card h1 {
@@ -426,17 +487,25 @@
     padding: 0 10px !important;
   }
 
+  .selected-scroll-wrapper {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin-bottom: 12px !important;
+  }
+
   .selected-count-inside {
     position: static !important;
     display: block !important;
     text-align: center !important;
     font-size: 0.95rem !important;
     padding: 8px 12px !important;
-    margin: 0 auto 8px auto !important;
-    background-color: #f0f0f0 !important;
-    border: 1px solid #d0d0d0 !important;
+    margin: 0 0 8px 0 !important;
+    background-color: #fafbfc !important;
+    border: 1.5px solid #d1d5db !important;
     border-radius: 6px !important;
     width: fit-content !important;
+    color: #666 !important;
   }
 
   .scroll-instruction {
@@ -446,6 +515,13 @@
     color: #666 !important;
     margin: 0 auto 10px auto !important;
     font-style: italic !important;
+  }
+
+  .scroll-instruction-text {
+    text-align: center !important;
+    font-size: 15.52px !important;
+    margin: 0 !important;
+    padding: 0 10px !important;
   }
 
   .instruction-list {
@@ -459,7 +535,7 @@
   }
 
   .instruction-list li {
-    font-size: 0.9rem !important;
+    font-size: 15.52px !important;
     line-height: 1.4 !important;
     margin-bottom: 8px !important;
   }
@@ -471,12 +547,12 @@
   }
 
   .filter-headline {
-    font-size: 1rem !important;
+    font-size: 15.52px !important;
     margin-bottom: 6px !important;
   }
 
   .filter-instructions {
-    font-size: 0.9rem !important;
+    font-size: 15.52px !important;
     margin-bottom: 10px !important;
   }
 
@@ -560,6 +636,10 @@
     margin-bottom: 0px !important;
   }
 
+  .pagination-buttons {
+    margin-top: 12px !important;
+  }
+
   .card button.button {
     width: auto !important;
     min-width: 100px !important;
@@ -629,6 +709,24 @@
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+  }
+
+  .preview-item-word {
+    height: 155px !important;
+  }
+
+  .preview-item-word .preview-word-img-container {
+    height: 100px !important;
+  }
+
+  .preview-item-word img {
+    object-fit: contain !important;
+  }
+
+  .preview-item-word .picture-label {
+    margin-top: 0 !important;
+    padding: 2px 2px !important;
+    height: auto !important;
   }
 
   .modal-actions-picture {
