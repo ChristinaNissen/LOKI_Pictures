@@ -115,18 +115,18 @@ const allImages = [
   img94, img95
 ];
 
-function BallotConfirmation_Picture(setIsLoggedIn) {
+function BallotConfirmation_Picture2(setIsLoggedIn) {
   const navigate = useNavigate();
   const location = useLocation();
   const { userSelectedYes, setSelectedImage } = useContext(VoteContext);
 
   // Use static alpaca image
-  const image_visual = img5;
-  const imageName = "Alpaca";
+  const image_visual = img86;
+  const imageName = "Ice Cream";
 
   // Set the alpaca image in context so it's available for VisualSelection_Picture
   React.useEffect(() => {
-    setSelectedImage(img5);
+    setSelectedImage(img86);
   }, [setSelectedImage]);
 
   // Retrieve candidate name from navigation state; fallback if not set.
@@ -244,7 +244,7 @@ function BallotConfirmation_Picture(setIsLoggedIn) {
   );
 }
 
-export default BallotConfirmation_Picture;
+export default BallotConfirmation_Picture2;
 
 
 
