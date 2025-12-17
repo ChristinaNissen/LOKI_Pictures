@@ -16,6 +16,25 @@ const StudyInfo2 = () => {
     fetchUserID();
   }, []);
 
+   // Prevent back navigation by redirecting to current page
+  useEffect(() => {
+    const preventBackNavigation = (event) => {
+      window.history.pushState(null, '', window.location.pathname);
+      navigate('/studyinfo2', { replace: true });
+    };
+
+    // Push initial state
+    window.history.pushState(null, '', window.location.pathname);
+
+    // Listen for popstate event (back button)
+    window.addEventListener('popstate', preventBackNavigation);
+
+    return () => {
+      window.removeEventListener('popstate', preventBackNavigation);
+    };
+  }, [navigate]);
+
+
   function copyIdToClipBoard() {
     if (userID) {
       navigator.clipboard.writeText(userID);
