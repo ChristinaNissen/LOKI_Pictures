@@ -115,7 +115,7 @@ const allImages = [
   img94, img95
 ];
 
-function BallotConfirmation_Picture(setIsLoggedIn) {
+function BallotConfirmationPicture(setIsLoggedIn) {
   const navigate = useNavigate();
   const location = useLocation();
   const { userSelectedYes, setSelectedImage } = useContext(VoteContext);
@@ -244,7 +244,7 @@ function BallotConfirmation_Picture(setIsLoggedIn) {
   );
 }
 
-export default BallotConfirmation_Picture;
+export default BallotConfirmationPicture;
 
 
 

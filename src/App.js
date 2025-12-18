@@ -7,8 +7,8 @@ import Welcome from './Components/Welcome';
 import Login from './Components/Login';
 import VotedBefore from './Components/VotedBefore';
 import Voting from './Components/Voting';
-import BallotConfirmation_Picture from './Components/BallotConfirmation_Picture';
-import BallotConfirmation_Picture2 from './Components/BallotConfirmation_Picture2';
+import BallotConfirmationPicture from './Components/BallotConfirmation_Picture';
+import BallotConfirmationPicture2 from './Components/BallotConfirmation_Picture2';
 import VisualSelectionPicture from './Components/VisualSelection_Picture';
 import StudyInfo2 from './Components/Study-Info/StudyInfo2';
 import StudyInfo3 from './Components/Study-Info/StudyInfo3';
@@ -75,10 +75,10 @@ function App() {
           <Route path="/votedbefore" element={<VotedBefore />} />
           <Route path="/voting" element={<Voting  />} />
            <Route path="/confirmation" element={
-            hasReachedStudyInfo2 ? <Navigate to="/studyinfo2" replace /> : <BallotConfirmation_Picture setIsLoggedIn={setIsLoggedIn} />
+            hasReachedStudyInfo2 ? <Navigate to="/studyinfo2" replace /> : <BallotConfirmationPicture setIsLoggedIn={setIsLoggedIn} />
           } />
           <Route path="/confirmation2" element={
-            hasReachedStudyInfo2 ? <Navigate to="/studyinfo2" replace /> : <BallotConfirmation_Picture2 setIsLoggedIn={setIsLoggedIn} />
+            hasReachedStudyInfo2 ? <Navigate to="/studyinfo2" replace /> : <BallotConfirmationPicture2 setIsLoggedIn={setIsLoggedIn} />
           } />
           <Route path="/selection" element={<VisualSelectionPicture />} />
           <Route path="/welcome" element={<Welcome />} />
