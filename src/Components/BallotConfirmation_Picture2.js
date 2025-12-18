@@ -9,7 +9,7 @@ import VoteContext from "../Contexts/VoteContext";
 import { saveVisuaRepresentation } from "../API/Voter";
 
 // Import your images
-import img4 from "../Images/alligator.jpg";
+/*import img4 from "../Images/alligator.jpg";
 import img5 from "../Images/alpaca.jpg";
 import img6 from "../Images/Apples.png";
 import img7 from "../Images/aquarium.jpg";
@@ -90,9 +90,9 @@ import img81 from "../Images/gorilla.jpg";
 import img82 from "../Images/hand.jpg";
 import img83 from "../Images/honey.jpg";
 import img84 from "../Images/hotair_balloon.jpg";
-import img85 from "../Images/hourglass.jpg";
+import img85 from "../Images/hourglass.jpg";*/
 import img86 from "../Images/ice_cream.jpg";
-import img87 from "../Images/iceskate.jpg";
+/*import img87 from "../Images/iceskate.jpg";
 import img88 from "../Images/jam.jpg";
 import img89 from "../Images/javelin.jpg";
 import img90 from "../Images/jetski.jpg";
@@ -100,7 +100,7 @@ import img91 from "../Images/kayak.jpg";
 import img92 from "../Images/key.jpg";
 import img93 from "../Images/kimono.jpg";
 import img94 from "../Images/ladybug.jpg";
-import img95 from "../Images/lamb.jpg";
+import img95 from "../Images/lamb.jpg";*/
 
 /*
 const allImages = [
