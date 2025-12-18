@@ -149,6 +149,14 @@ const VisualSelectionPicture = () => {
   const [visualRepresentation, setVisualRepresentation] = useState(null);
   const [isCorrectSelection, setIsCorrectSelection] = useState(null);
 
+
+  // Close modal if all words are removed
+  useEffect(() => {
+    if (showConfirm && selected.length === 0) {
+      setShowConfirm(false);
+    }
+  }, [selected, showConfirm]);
+
   // Add these states at the top of your component
   const [search, setSearch] = useState("");
   const [letterFilter, setLetterFilter] = useState("");
@@ -310,7 +318,7 @@ const VisualSelectionPicture = () => {
           </h1>
           <div className="instruction-list" style={{ maxWidth: "800px", margin: "0 auto 0px auto", textAlign:"left" }}>
             <ul>
-              <li>You need to select all the pictures below that you have seen when casting your previous ballots.</li>
+              <li>You must select <strong>all</strong> the pictures below that you have seen when casting your previous ballots. This includes pictures from both valid and invalid ballots.</li>
               <li>The system will not reveal if your selection is correct for security reasons.</li>
               <li>Only the correct selection will ensure that your vote gets updated and counted into the results.</li>
               <li>If you are unsure or cannot remember your pictures, please contact election officials at your polling station.</li>
@@ -434,8 +442,10 @@ const VisualSelectionPicture = () => {
           <div className="modal-backdrop-picture">
             <div className="modal-picture">
             <p style={{fontSize: "18px", fontWeight: "bold"}}>
-                Please review your chosen word{selected.length > 1 ? "s" : ""} below.
-                <br /> Do you wish to proceed?
+                Please review your selected picture{selected.length > 1 ? "s" : ""} below.
+              </p>
+               <p style={{fontSize: "16px", marginTop: "8px", marginBottom: "16px"}}>
+                Please verify that your selection is correct. Once confirmed, you will not receive feedback on whether this selection is correct.
               </p>
               <div className="selected-pictures-preview-picture">
                 {selected.map(idx => {
@@ -443,7 +453,35 @@ const VisualSelectionPicture = () => {
                   if (!imgSrc) return null; // Safety check
                   const label = imgSrc.split('/').pop().split('.')[0].replace(/_/g, ' ');
                   return (
-                    <div key={idx} className="preview-item-picture" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                    <div key={idx} className="preview-item-picture" style={{ display: "flex", flexDirection: "column", alignItems: "center", position: "relative" }}>
+                      <button
+                        onClick={() => {
+                          setSelected(prev => prev.filter(i => i !== idx));
+                        }}
+                        style={{
+                          position: "absolute",
+                          top: 4,
+                          right: 4,
+                          width: 24,
+                          height: 24,
+                          borderRadius: "50%",
+                          border: "1px solid #ccc",
+                          background: "#f3f4f6",
+                          color: "#666",
+                          fontSize: "16px",
+                          fontWeight: "bold",
+                          cursor: "pointer",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          padding: 0,
+                          lineHeight: 1,
+                          zIndex: 10,
+                        }}
+                        title="Remove this picture"
+                      >
+                        ×
+                      </button>
                       <img src={imgSrc} alt={`preview-${idx}`} />
                       <div className="picture-label" style={{ marginTop: 8, fontWeight: "bold", textAlign: "center" }}>
                         {label}
@@ -454,7 +492,7 @@ const VisualSelectionPicture = () => {
               </div>
               <div className="modal-actions-picture">
                 <button className="button" onClick={confirmSelection}>
-                  Yes, proceed
+                  Confirm selection
                 </button>
                 <button className="button-secondary" onClick={() => setShowConfirm(false)}>
                   Cancel
