@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Footer from "./Footer";
 import "./Login.css";
 import "./Voting-system.css";
@@ -16,6 +16,10 @@ const Login = ({ setIsLoggedIn }) => {
   const [showStudyModal, setShowStudyModal] = useState(false);
   const [hasShownModal, setHasShownModal] = useState(false);
   const navigate = useNavigate();
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   
   // Secret salt for hashing - in production, this should be in an environment variable
   const SECRET_SALT = "voting_system_secret_2024";

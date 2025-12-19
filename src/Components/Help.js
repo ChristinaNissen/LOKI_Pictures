@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Help.css";
 import "./Voting-system.css";
 import "./Welcome.css"; // Assuming Welcome.css defines the chevron icons
@@ -557,6 +557,10 @@ const helpSections = [
 const Help = () => {
 	// Manage open/close state per FAQ item.
 	const [openItems, setOpenItems] = useState({});
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 
 	const toggleItem = (id) => {
 		setOpenItems((prev) => ({ ...prev, [id]: !prev[id] }));

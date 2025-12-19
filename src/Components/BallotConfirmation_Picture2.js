@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import "./Voting-system.css";
@@ -120,6 +120,10 @@ function BallotConfirmationPicture2(setIsLoggedIn) {
   const navigate = useNavigate();
   const location = useLocation();
   const { userSelectedYes, setSelectedImage } = useContext(VoteContext);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // Use static alpaca image
   const image_visual = img86;
