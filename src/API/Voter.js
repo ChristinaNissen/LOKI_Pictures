@@ -36,9 +36,16 @@ export async function loginVoter(ID, password) {
 }
 
 export async function logoutVoter(){
+  try {
     await Parse.User.logOut();
-    console.log("Logout successful");
-
+    // Clear all session storage and local storage
+    sessionStorage.clear();
+    localStorage.clear();
+    console.log("Logout successful - all sessions cleared");
+  } catch (err) {
+    console.error("Logout error:", err);
+    throw err;
+  }
 }
 
 export default function getCurrentUser() {
