@@ -37,6 +37,8 @@ export async function loginVoter(ID, password) {
 
 export async function logoutVoter(){
     await Parse.User.logOut();
+    console.log("Logout successful");
+
 }
 
 export default function getCurrentUser() {
