@@ -227,6 +227,16 @@ const VisualSelectionPicture = () => {
     return filename.split('/').pop().split('.')[0];
   };
 
+  const getDisplayName = (filename) => {
+    // Extracts the display name without suffixes like _01b, _02s, etc.
+    // e.g., "hoodie_01b" becomes "hoodie", "envelope_04s" becomes "envelope"
+    const baseName = filename.split('/').pop().split('.')[0];
+    // Remove pattern: underscore followed by digits and optional letters (e.g., _01b, _02s, _04s)
+    const cleanName = baseName.replace(/_\d+[a-z]?$/i, '');
+    // Replace remaining underscores with spaces and capitalize first letter of each word
+    return cleanName.replace(/_/g, ' ');
+  };
+
   const confirmSelection = async () => {
     // Get base names for selected images
     const selectedBaseNames = selected.map(idx => {
@@ -405,7 +415,7 @@ const VisualSelectionPicture = () => {
                         <img src={imgSrc} alt={`visual-${globalIdx}`} />
                       </div>
                       <div className="picture-label">
-                        {imgSrc.split('/').pop().split('.')[0].replace(/_/g, ' ')}
+                        {getDisplayName(imgSrc)}
                       </div>
                     </div>
                   );
@@ -450,7 +460,7 @@ const VisualSelectionPicture = () => {
                 {selected.map(idx => {
                   const imgSrc = filteredItems[idx];
                   if (!imgSrc) return null; // Safety check
-                  const label = imgSrc.split('/').pop().split('.')[0].replace(/_/g, ' ');
+                  const label = getDisplayName(imgSrc);
                   return (
                     <div key={idx} className="preview-item-picture" style={{ display: "flex", flexDirection: "column", alignItems: "center", position: "relative" }}>
                       <button
