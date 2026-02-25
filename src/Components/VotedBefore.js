@@ -3,13 +3,14 @@ import { useNavigate } from "react-router-dom";
 import VoteContext from "../Contexts/VoteContext";
 import ProcessBar from "./ProcessBar";
 import Footer from "./Footer";
+import { saveVotedBeforeSelection } from "../API/Voter";
 import "./Voting-system.css";
 import "./VotedBefore.css";
 
 const VotedBefore = () => {
   const navigate = useNavigate();
   const { setUserSelectedYes } = useContext(VoteContext);
-  const [selected, setSelected] = useState(null); // null means none selected yet
+  const [selected, setSelected] = useState(null);
   const [showError, setShowError] = useState(false);
 
   useEffect(() => {
@@ -18,17 +19,27 @@ const VotedBefore = () => {
 
   const handleSelect = (value) => {
     if (selected === value) {
-      setSelected(null); // unselect if clicked again
+      setSelected(null);
     } else {
       setSelected(value);
     }
   };
 
-  const handleNext = () => {
-     if (selected === null) {
+  const handleNext = async () => {
+    if (selected === null) {
       setShowError(true);
       return;
     }
+
+    // Save the selection to database
+    try {
+      await saveVotedBeforeSelection(selected);
+      console.log('Voted before selection saved:', selected);
+    } catch (error) {
+      console.error('Error saving voted before selection:', error);
+      // Continue navigation even if saving fails
+    }
+    
     if (selected === true) {
       setUserSelectedYes(true);
       navigate("/selection");

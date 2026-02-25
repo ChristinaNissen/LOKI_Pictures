@@ -27,7 +27,7 @@ const ConsentForm = () => {
         <h1 className="h1-info-pages">Welcome to our study!</h1>
         <p>
           The purpose of this study is to investigate user experience
-          in an online voting system intended for general elections.
+          when casting a true vote in an online voting system intended for general elections.
         </p>
         <h3 className="title-margin-top">Description of research</h3>
         <p>

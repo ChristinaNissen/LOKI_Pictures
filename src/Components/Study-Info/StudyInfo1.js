@@ -44,7 +44,7 @@ const StudyInfo1 = () => {
             <div className="step-number">1</div>
             <div className="step-content">
               <p>
-                All candidates are fictional. For this study, we ask you to cast your vote as if this is your <strong>first time voting</strong> in the election.
+                All candidates are fictional. For this first part of the study, we kindly ask you to vote for a random candidate, as if this is your <strong>first time voting</strong> in the election using the voting system.
               </p>
               <label className="check-box blue-bg-highlight">
                 <input
@@ -53,7 +53,7 @@ const StudyInfo1 = () => {
                   onChange={handleChangeCheckbox}
                   className="blue-bg-highlight"
                 />
-                I understand and will vote as if this is my first time
+                I understand and will vote for a random candidate as if this is my first time voting.
               </label>
             </div>
           </div>

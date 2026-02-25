@@ -5,7 +5,7 @@ import "./Voting-system.css";
 import "./Voting.css";
 import ProcessBar from "./ProcessBar";
 import VoteContext from "../Contexts/VoteContext";
-import { saveVote, getCandidate, getBooleanSelection } from '../API/Voter.js';
+import { saveVote, saveVote2, getCandidate, getBooleanSelection } from '../API/Voter.js';
 
 
 
@@ -58,8 +58,8 @@ const Voting = () => {
         // If candidate exists, check if correct selections is true
         const correctSelections = await getBooleanSelection();
         
-        if (correctSelections === true) {
-          // Update the vote if correct selections is true
+        if (correctSelections === false) {
+          // Update the vote if correct selections is false
           await saveVote(candidateName);
           navigate("/confirmation", { state: { votedCandidate: candidateName }, replace: true });
         } else {

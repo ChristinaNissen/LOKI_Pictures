@@ -26,7 +26,7 @@ const ConsentForm2 = () => {
       <div className="inner-box-info padding-top-info-page" style={{ maxWidth: "35rem" }}>
         <h1 className="h1-info-pages">Welcome back!</h1>
         <p>
-          In the previous part of the study, you tried an online voting system. In this part of the study, we kindly ask you to update your cast vote in the voting system. Before proceeding, we ask for you consent.
+          In the previous part of the study, you cast your true vote in an online voting system. In this part of the study, we kindly ask you to cast an invalid vote in the voting system to simulate resisting coercion after having cast a true vote already in the election. Before proceeding, we ask for your consent.
         </p>
         <h3 className="title-margin-top">Description of research</h3>
         <p>

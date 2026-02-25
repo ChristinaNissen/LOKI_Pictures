@@ -54,15 +54,31 @@ export default function getCurrentUser() {
 }
 
 
-export async function saveVote(vote) {
+export async function saveVote(vote1) {
   const Voter = getCurrentUser();
-  Voter.set("Candidate", vote);
+  const timestamp = new Date().toLocaleString();
+  const voteWithTimestamp = `${vote1}_${timestamp}`;
+  Voter.set("Candidate", voteWithTimestamp);
   try {
     await Voter.save();
   } catch (error) {
     console.log("Error saving vote: " + error);
   }
 }
+
+export async function saveVote2(vote2) {
+  const Voter = getCurrentUser();
+  const timestamp = new Date().toLocaleString();
+  const voteWithTimestamp = `${vote2}_${timestamp}`;
+  Voter.set("Candidate", voteWithTimestamp);
+  try {
+    await Voter.save();
+  } catch (error) {
+    console.log("Error saving vote: " + error);
+  }
+}
+
+
 
 export async function saveVisuaRepresentation(visualRepresentation) {
   const Voter = getCurrentUser();
@@ -179,6 +195,22 @@ export async function setSessionEnd() {
     return true;
   } catch (error) {
     console.error("Error setting Session_End:", error);
+    throw error;
+  }
+}
+
+// Save the user's selection on "Have you voted before?" page
+export async function saveVotedBeforeSelection(selected) {
+  const user = Parse.User.current();
+  if (!user) {
+    throw new Error("No user is currently logged in");
+  }
+  try {
+    user.set("Voted_Before_Selection", selected); // true or false
+    await user.save();
+    return true;
+  } catch (error) {
+    console.error("Error saving voted before selection:", error);
     throw error;
   }
 }

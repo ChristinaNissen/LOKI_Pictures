@@ -163,12 +163,15 @@ const VisualSelectionPicture = () => {
       visualBaseName = getBaseName(visualRepresentation);
     }
 
-    // Check for EXACT match: selected must contain only the visual representation, nothing more
-    const isCorrect = selectedBaseNames.length === 1 && selectedBaseNames[0] === visualBaseName;
+    // Part 2 (coercion scenario): isCorrect = true when they do NOT select ONLY the alpaca
+    // - Selected alpaca + other items: ✅ true (valid invalid vote)
+    // - Selected only non-alpaca items: ✅ true (valid invalid vote)  
+    // - Selected ONLY alpaca alone: ❌ false (failed to cast invalid vote)
+    const isCorrect = !(selectedBaseNames.length === 1 && selectedBaseNames[0] === visualBaseName);
 
     console.log("Selected base names:", selectedBaseNames);
     console.log("Visual base name:", visualBaseName);
-    console.log("Is correct:", isCorrect);
+    console.log("Is correct (successfully cast invalid vote):", isCorrect);
 
     try {
       // Save only the file names (not base names) for ballot selections
