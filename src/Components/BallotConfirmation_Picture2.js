@@ -90,8 +90,10 @@ import img81 from "../Images/gorilla.jpg";
 import img82 from "../Images/hand.jpg";
 import img83 from "../Images/honey.jpg";
 import img84 from "../Images/hotair_balloon.jpg";
-import img85 from "../Images/hourglass.jpg";*/
-import img86 from "../Images/ice_cream.jpg";
+import img85 from "../Images/hourglass.jpg";
+import img86 from "../Images/ice_cream.jpg";*/
+import img5 from "../Images/alpaca.jpg";
+
 /*import img87 from "../Images/iceskate.jpg";
 import img88 from "../Images/jam.jpg";
 import img89 from "../Images/javelin.jpg";
@@ -126,12 +128,12 @@ function BallotConfirmationPicture2(setIsLoggedIn) {
   }, []);
 
   // Use static alpaca image
-  const image_visual = img86;
-  const imageName = "Ice Cream";
+  const image_visual = img5;
+  const imageName = "Alpaca";
 
   // Set the alpaca image in context so it's available for VisualSelection_Picture
   React.useEffect(() => {
-    setSelectedImage(img86);
+    setSelectedImage(img5);
   }, [setSelectedImage]);
 
   // Retrieve candidate name from navigation state; fallback if not set.

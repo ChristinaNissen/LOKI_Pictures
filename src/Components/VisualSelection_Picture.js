@@ -29,8 +29,8 @@ allImagesRaw.forEach(img => {
 
 let allImagesFiltered = Array.from(uniqueImages.values());
 
-// Ensure alpaca is in the list
-const alpacaImage = allImagesFiltered.find(img => getCleanBaseName(img) === 'alpaca');
+// Ensure ice cream is in the list
+const icecreamImage = allImagesFiltered.find(img => getCleanBaseName(img) === 'ice_cream');
 
 // Sort all images alphabetically by clean base name
 allImagesFiltered.sort((a, b) => {
@@ -42,10 +42,10 @@ allImagesFiltered.sort((a, b) => {
 // Limit to 500 images
 let allImages = allImagesFiltered.slice(0, 500);
 
-// Ensure alpaca is among the 500
-if (alpacaImage && !allImages.includes(alpacaImage)) {
-  // Add alpaca to the list and re-sort
-  allImages.push(alpacaImage);
+// Ensure ice cream is among the 500
+if (icecreamImage && !allImages.includes(icecreamImage)) {
+  // Add ice cream to the list and re-sort
+  allImages.push(icecreamImage);
   allImages.sort((a, b) => {
     const nameA = getCleanBaseName(a);
     const nameB = getCleanBaseName(b);
@@ -163,10 +163,10 @@ const VisualSelectionPicture = () => {
       visualBaseName = getBaseName(visualRepresentation);
     }
 
-    // isCorrect = true when they select ONLY the alpaca
-    // - Selected alpaca + other items: ❌ false (incorrect)
-    // - Selected only non-alpaca items: ❌ false (incorrect)  
-    // - Selected ONLY alpaca alone: ✅ true (correct)
+    // isCorrect = true when they select ONLY the ice cream
+    // - Selected ice cream + other items: ❌ false (incorrect)
+    // - Selected only non-ice cream items: ❌ false (incorrect)  
+    // - Selected ONLY ice cream alone: ✅ true (correct)
     const isCorrect = selectedBaseNames.length === 1 && selectedBaseNames[0] === visualBaseName;
 
     console.log("Selected base names:", selectedBaseNames);
