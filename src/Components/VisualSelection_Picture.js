@@ -219,8 +219,7 @@ const VisualSelectionPicture = () => {
           <div className="security-box-selection">
             <p className="text-small">
               <strong>Security Feature:</strong><br/>
-              This process allows you to update your vote securely and privately. It helps ensure your voting decisions are made by you.
-            </p>
+This step verifies your identity, ensuring that only you can update your vote by recognising the pictures shown to you after your previous voting session(s).            </p>
           </div>
         </div>
         <div className="card-wide">
@@ -233,7 +232,7 @@ const VisualSelectionPicture = () => {
               <li>The system will not reveal if your selection is correct for security reasons.</li>
               <li>Only the correct selection will ensure that your vote gets updated and counted into the results.</li>
               <li>If you are unsure or cannot remember your pictures, please contact election officials at your polling station.</li>
-                          <li>If someone is pressuring you to change your vote, you can select pictures that do not match your previous ballots. The system will not update your vote, and no one will know about this.</li>
+              <li>If someone is pressuring you, you can select wrong pictures to protect your true vote. If you need to update a coerced vote, select all the pictures you have seen before.</li>
 
             </ul>
           </div>
