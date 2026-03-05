@@ -31,12 +31,11 @@ const ConsentForm2 = () => {
         <h3 className="title-margin-top">Description of research</h3>
         <p>
           Before entering the voting system, you will be asked to download an
-          instruction paper for the voting system. After entering the system,
-          you are asked to test the voting system by following the instruction
-          paper. This will be followed by a questionnaire, which you will get
+          instruction paper for the voting system and instructed which task to complete.
+          This will be followed by a questionnaire, which you will get
           redirected to from the last page of the voting system. Once you have
           completed the questionnaire, you will be redirected to Prolific. The
-          total duration of the study is approximately X minutes. We highly
+          total duration of the study is approximately 15 minutes. We highly
           recommend using a desktop device for the study.
         </p>
         <h3>Withdrawal</h3>
@@ -54,7 +53,7 @@ const ConsentForm2 = () => {
           >
            https://participant-help.prolific.com/en/articles/445041-how-to-return-a-submission-on-prolific
           </a>
-          After completing the study, you may still request to have your data deleted until 14 days after submitting the survey by contacting the researhers and provide your Prolific ID, which allows us to locate and remove your data. After this deadline, it will no longer be possible to delete your data.
+          After completing the study, you may still request to have your data deleted until 14 days after submitting the survey by contacting the researchers and providing your Prolific ID, which allows us to locate and remove your data. After this deadline, it will no longer be possible to delete your data.
         </p>
           <h3 className="title-margin-top">Ethical Considerations and Your Wellbeing</h3>
         <p>
@@ -62,7 +61,7 @@ const ConsentForm2 = () => {
         </p>
         <h3 className="title-margin-top">Compensation</h3>
         <p>
-          Each participant will receive X £ at the conclusion of the study
+          Each participant will receive 2.25 £ at the conclusion of the study
           through Prolific.
         </p>
         <h3 className="title-margin-top">How we handle and delete the data</h3>

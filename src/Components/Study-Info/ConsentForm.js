@@ -32,12 +32,9 @@ const ConsentForm = () => {
         <h3 className="title-margin-top">Description of research</h3>
         <p>
           Before entering the voting system, you will be asked to download an
-          instruction paper for the voting system. After entering the system,
-          you are asked to test the voting system by following the instruction
-          paper. This will be followed by a questionnaire, which you will get
-          redirected to from the last page of the voting system. Once you have
-          completed the questionnaire, you will be redirected to Prolific. The
-          total duration of the study is approximately X minutes. We highly
+          instruction paper for the voting system and instructed which task to complete.
+          Once you have completed the study tasks in the voting system, you will be redirected to Prolific. The
+          total duration of the study is approximately 10 minutes. We highly
           recommend using a desktop device for the study.
         </p>
         <h3>Withdrawal</h3>
@@ -59,11 +56,11 @@ const ConsentForm = () => {
         </p>
           <h3 className="title-margin-top">Ethical Considerations and Your Wellbeing</h3>
         <p>
-          The voting system you are testing is designed to help prevent coercion in online voting. In the following survey, you may be asked questions such as "Imagine you are coerced, what do you do?" These questions are intended to understand how users might respond to coercion scenarios and to improve the security of online voting. If you feel any discomfort or distress from these questions or the study in general, you may leave the study at any time without penalty.
+          The voting system you are testing is designed to help prevent coercion in online voting. In the following study, you may be asked to "Imagine you are coerced, cast an invalid vote in the voting system." These instructions are intended to understand whether users can use the voting system correctly under coercion scenarios. If you feel any discomfort or distress from these instructions or the study in general, you may leave the study at any time without penalty.
         </p>
         <h3 className="title-margin-top">Compensation</h3>
         <p>
-          Each participant will receive X £ at the conclusion of the study
+          Each participant will receive 1.5 £ at the conclusion of the study
           through Prolific.
         </p>
         <h3 className="title-margin-top">How we handle and delete the data</h3>
